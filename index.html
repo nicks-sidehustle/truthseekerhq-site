@@ -364,15 +364,52 @@
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-4 text-gray-900">DON'T MISS A SIGHTING</h2>
             <p class="text-gray-800 mb-6">Weekly sighting reports, declassified document drops, and investigations they don't want you to see.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900">
-                <button class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold">
+            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900">
+                <button type="submit" id="newsletter-btn" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold">
                     Subscribe
                 </button>
-            </div>
-            <p class="text-xs text-gray-700 mt-4">No spam. No tracking. We respect your privacy.</p>
+            </form>
+            <p id="newsletter-status" class="text-xs text-gray-700 mt-4">No spam. No tracking. We respect your privacy.</p>
         </div>
     </section>
+
+    <script>
+    document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = document.getElementById('newsletter-email').value;
+        const btn = document.getElementById('newsletter-btn');
+        const status = document.getElementById('newsletter-status');
+        
+        btn.disabled = true;
+        btn.textContent = 'Subscribing...';
+        
+        try {
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                status.textContent = '✓ You\'re in. Watch your inbox.';
+                status.classList.remove('text-gray-700');
+                status.classList.add('text-gray-900', 'font-semibold');
+                document.getElementById('newsletter-email').value = '';
+                btn.textContent = 'Subscribed!';
+            } else {
+                throw new Error(data.error || 'Something went wrong');
+            }
+        } catch (err) {
+            status.textContent = 'Error: ' + err.message + '. Try again.';
+            status.classList.add('text-red-900');
+            btn.disabled = false;
+            btn.textContent = 'Subscribe';
+        }
+    });
+    </script>
 
     <!-- Footer -->
     <footer class="bg-black py-12">
