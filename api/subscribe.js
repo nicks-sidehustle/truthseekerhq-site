@@ -18,11 +18,14 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Valid email required' });
   }
 
+  const apiKey = process.env.BREVO_API_KEY;
+
   try {
+    // Add contact to list
     const response = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
-        'api-key': process.env.BREVO_API_KEY,
+        'api-key': apiKey,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -32,17 +35,42 @@ export default async function handler(req, res) {
       })
     });
 
-    if (response.ok || response.status === 201 || response.status === 204) {
-      return res.status(200).json({ success: true, message: 'Subscribed!' });
+    const isNew = response.ok || response.status === 201 || response.status === 204;
+    let isDuplicate = false;
+    
+    if (!isNew) {
+      const data = await response.json();
+      isDuplicate = data.code === 'duplicate_parameter';
+      if (!isDuplicate) {
+        return res.status(400).json({ error: data.message || 'Subscription failed' });
+      }
     }
-    
-    const data = await response.json();
-    
-    if (data.code === 'duplicate_parameter') {
-      return res.status(200).json({ success: true, message: 'Already subscribed' });
+
+    // Send welcome email only to new subscribers
+    if (isNew) {
+      try {
+        await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: {
+            'api-key': apiKey,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            templateId: 1, // TruthSeekerHQ Welcome template
+            to: [{ email: email }],
+            params: {}
+          })
+        });
+      } catch (emailErr) {
+        // Don't fail subscription if welcome email fails
+        console.error('Welcome email failed:', emailErr);
+      }
     }
-    
-    return res.status(400).json({ error: data.message || 'Subscription failed' });
+
+    return res.status(200).json({ 
+      success: true, 
+      message: isDuplicate ? 'Already subscribed' : 'Subscribed!' 
+    });
   } catch (err) {
     console.error('Brevo API error:', err);
     return res.status(500).json({ error: 'Server error. Try again later.' });
