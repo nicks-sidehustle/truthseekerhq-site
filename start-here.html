@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Here - Your Guide to Hidden Truths | TruthSeekerHQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .rabbit-hole {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .rabbit-hole::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .rabbit-hole:hover::before {
+            left: 100%;
+        }
+        .rabbit-hole:hover {
+            transform: scale(1.02);
+            border-color: #f59e0b;
+        }
+        .depth-meter {
+            height: 4px;
+            background: linear-gradient(to right, #22c55e, #eab308, #ef4444);
+            border-radius: 2px;
+        }
+        .checklist-item {
+            transition: all 0.2s ease;
+        }
+        .checklist-item:hover {
+            padding-left: 8px;
+            border-left: 2px solid #f59e0b;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-black bg-opacity-90 fixed w-full z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0">
+                        <span class="text-yellow-500 font-bold text-xl"><i class="fas fa-eye mr-2"></i>TRUTHSEEKER</span>
+                    </a>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="index.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="ufo-sightings.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">UFO Map</a>
+                            <a href="start-here.html" class="text-yellow-500 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium">Start Here</a>
+                            <a href="resources.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                        <i class="fas fa-bell mr-1"></i> Get Alerts
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 bg-gradient-to-b from-gray-800 to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-yellow-500">
+                <i class="fas fa-map-signs mr-3"></i>START YOUR JOURNEY
+            </h1>
+            <p class="text-xl max-w-3xl mx-auto text-gray-300 mb-8">
+                New to the truth? Choose a rabbit hole below. Each topic includes curated resources, key evidence, and paths to dig deeper.
+            </p>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <span class="px-4 py-2 bg-green-900 text-green-400 rounded-full text-sm">
+                    <i class="fas fa-seedling mr-1"></i> Beginner Friendly
+                </span>
+                <span class="px-4 py-2 bg-yellow-900 text-yellow-400 rounded-full text-sm">
+                    <i class="fas fa-fire mr-1"></i> Intermediate
+                </span>
+                <span class="px-4 py-2 bg-red-900 text-red-400 rounded-full text-sm">
+                    <i class="fas fa-skull mr-1"></i> Deep Dive
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topic Grid -->
+    <section class="py-12 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- UFO/UAP Topic -->
+                <div class="rabbit-hole bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600');">
+                        <div class="h-full w-full bg-black bg-opacity-50 flex items-end p-4">
+                            <h2 class="text-2xl font-bold text-white"><i class="fas fa-satellite-dish mr-2"></i>UFOs & UAPs</h2>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="text-xs text-gray-500">RABBIT HOLE DEPTH</span>
+                            <div class="depth-meter mt-1"></div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>Surface</span>
+                                <span>Classified</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 mb-4">From Roswell to the Pentagon's UAP Task Force. Government acknowledgment, military encounters, and what they're not telling us.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>2017 NYT Pentagon UFO Revelation
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>Nimitz "Tic Tac" Encounter (2004)
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2"></i>Bob Lazar & Area 51 Claims
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>Crash Retrieval Programs
+                            </div>
+                        </div>
+                        <a href="topics/ufo-uap.html" class="block w-full bg-yellow-600 hover:bg-yellow-700 text-white text-center py-2 rounded font-semibold">
+                            Enter the Rabbit Hole <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- JFK Topic -->
+                <div class="rabbit-hole bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=600');">
+                        <div class="h-full w-full bg-black bg-opacity-50 flex items-end p-4">
+                            <h2 class="text-2xl font-bold text-white"><i class="fas fa-crosshairs mr-2"></i>JFK Assassination</h2>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="text-xs text-gray-500">RABBIT HOLE DEPTH</span>
+                            <div class="depth-meter mt-1"></div>
+                        </div>
+                        <p class="text-gray-400 mb-4">The murder that changed America. Why the official story doesn't add up, and who really wanted Kennedy dead.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>The Magic Bullet Theory Debunked
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>Zapruder Film Analysis
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2"></i>CIA, Mafia & Cuban Connections
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>Still-Classified Documents
+                            </div>
+                        </div>
+                        <a href="topics/jfk.html" class="block w-full bg-yellow-600 hover:bg-yellow-700 text-white text-center py-2 rounded font-semibold">
+                            Enter the Rabbit Hole <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MK-Ultra Topic -->
+                <div class="rabbit-hole bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600');">
+                        <div class="h-full w-full bg-black bg-opacity-50 flex items-end p-4">
+                            <h2 class="text-2xl font-bold text-white"><i class="fas fa-brain mr-2"></i>MK-Ultra & Mind Control</h2>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="text-xs text-gray-500">RABBIT HOLE DEPTH</span>
+                            <div class="depth-meter mt-1"></div>
+                        </div>
+                        <p class="text-gray-400 mb-4">The CIA's secret program to control human minds. LSD experiments, unwitting subjects, and the documents they couldn't destroy.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>Declassified CIA Documents
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>Operation Paperclip Connection
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2"></i>Unabomber & Harvard Experiments
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>Manchurian Candidate Theory
+                            </div>
+                        </div>
+                        <a href="topics/mkultra.html" class="block w-full bg-yellow-600 hover:bg-yellow-700 text-white text-center py-2 rounded font-semibold">
+                            Enter the Rabbit Hole <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mass Surveillance Topic -->
+                <div class="rabbit-hole bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600');">
+                        <div class="h-full w-full bg-black bg-opacity-50 flex items-end p-4">
+                            <h2 class="text-2xl font-bold text-white"><i class="fas fa-video mr-2"></i>Mass Surveillance</h2>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="text-xs text-gray-500">RABBIT HOLE DEPTH</span>
+                            <div class="depth-meter mt-1"></div>
+                        </div>
+                        <p class="text-gray-400 mb-4">They're watching everything. From Snowden's revelations to today's AI-powered surveillance state.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>NSA PRISM Program Exposed
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>Five Eyes Alliance
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2"></i>Social Media Data Harvesting
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>Facial Recognition Networks
+                            </div>
+                        </div>
+                        <a href="topics/surveillance.html" class="block w-full bg-yellow-600 hover:bg-yellow-700 text-white text-center py-2 rounded font-semibold">
+                            Enter the Rabbit Hole <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Big Pharma Topic -->
+                <div class="rabbit-hole bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600');">
+                        <div class="h-full w-full bg-black bg-opacity-50 flex items-end p-4">
+                            <h2 class="text-2xl font-bold text-white"><i class="fas fa-pills mr-2"></i>Big Pharma</h2>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="text-xs text-gray-500">RABBIT HOLE DEPTH</span>
+                            <div class="depth-meter mt-1"></div>
+                        </div>
+                        <p class="text-gray-400 mb-4">Profit over patients. Suppressed cures, manufactured epidemics, and the revolving door between FDA and industry.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>Opioid Crisis Cover-Up
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>FDA Regulatory Capture
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2"></i>Suppressed Research Studies
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>Cancer Industry Economics
+                            </div>
+                        </div>
+                        <a href="topics/big-pharma.html" class="block w-full bg-yellow-600 hover:bg-yellow-700 text-white text-center py-2 rounded font-semibold">
+                            Enter the Rabbit Hole <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Secret Societies Topic -->
+                <div class="rabbit-hole bg-gray-800 rounded-lg border border-gray-700 overflow-hidden">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600');">
+                        <div class="h-full w-full bg-black bg-opacity-50 flex items-end p-4">
+                            <h2 class="text-2xl font-bold text-white"><i class="fas fa-eye mr-2"></i>Secret Societies</h2>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="text-xs text-gray-500">RABBIT HOLE DEPTH</span>
+                            <div class="depth-meter mt-1"></div>
+                        </div>
+                        <p class="text-gray-400 mb-4">The hidden hands that shape world events. Skull & Bones, Bilderberg, Bohemian Grove, and the networks of power.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>Bilderberg Meeting Leaks
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>Skull & Bones Members List
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2"></i>Bohemian Grove Footage
+                            </div>
+                            <div class="checklist-item text-sm text-gray-300 py-1">
+                                <i class="fas fa-check-circle text-red-500 mr-2"></i>Global Power Network Maps
+                            </div>
+                        </div>
+                        <a href="topics/secret-societies.html" class="block w-full bg-yellow-600 hover:bg-yellow-700 text-white text-center py-2 rounded font-semibold">
+                            Enter the Rabbit Hole <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- More Topics Coming -->
+    <section class="py-12 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold mb-6 text-yellow-500">
+                <i class="fas fa-plus-circle mr-2"></i>MORE RABBIT HOLES COMING
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="bg-gray-900 p-4 rounded-lg text-center opacity-60">
+                    <i class="fas fa-plane text-2xl text-gray-500 mb-2"></i>
+                    <p class="text-sm text-gray-500">9/11 Investigation</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg text-center opacity-60">
+                    <i class="fas fa-moon text-2xl text-gray-500 mb-2"></i>
+                    <p class="text-sm text-gray-500">Moon Landing</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg text-center opacity-60">
+                    <i class="fas fa-virus text-2xl text-gray-500 mb-2"></i>
+                    <p class="text-sm text-gray-500">COVID Origins</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg text-center opacity-60">
+                    <i class="fas fa-landmark text-2xl text-gray-500 mb-2"></i>
+                    <p class="text-sm text-gray-500">Federal Reserve</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg text-center opacity-60">
+                    <i class="fas fa-cloud text-2xl text-gray-500 mb-2"></i>
+                    <p class="text-sm text-gray-500">Weather Control</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg text-center opacity-60">
+                    <i class="fas fa-monument text-2xl text-gray-500 mb-2"></i>
+                    <p class="text-sm text-gray-500">Ancient History</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="py-12 bg-yellow-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">STAY INFORMED. STAY SKEPTICAL.</h2>
+            <p class="text-gray-800 mb-6">Get weekly deep-dives, declassified document drops, and breaking truth delivered to your inbox.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900">
+                <button class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold">
+                    Subscribe
+                </button>
+            </div>
+            <p class="text-xs text-gray-700 mt-4">No spam. No tracking. Encrypted delivery available.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p>&copy; 2026 TruthSeekerHQ. Question Everything.</p>
+        </div>
+    </footer>
+</body>
+</html>

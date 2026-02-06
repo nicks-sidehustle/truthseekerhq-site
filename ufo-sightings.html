@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFO Sightings Map - TruthSeekerHQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        #map { height: 600px; width: 100%; }
+        .leaflet-popup-content-wrapper {
+            background: #1f2937;
+            color: #f3f4f6;
+            border-radius: 8px;
+        }
+        .leaflet-popup-tip { background: #1f2937; }
+        .leaflet-popup-content { margin: 12px 16px; }
+        .sighting-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #f59e0b;
+        }
+        .sighting-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+        }
+        .filter-btn.active {
+            background-color: #d97706;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-black bg-opacity-90 fixed w-full z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0">
+                        <span class="text-yellow-500 font-bold text-xl"><i class="fas fa-eye mr-2"></i>TRUTHSEEKER</span>
+                    </a>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="index.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="ufo-sightings.html" class="text-yellow-500 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium">UFO Map</a>
+                            <a href="start-here.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Start Here</a>
+                            <a href="resources.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                        <i class="fas fa-bell mr-1"></i> Get Alerts
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-8 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-yellow-500">
+                    <i class="fas fa-satellite-dish mr-3"></i>UFO SIGHTINGS MAP
+                </h1>
+                <p class="text-xl max-w-3xl mx-auto text-gray-300">
+                    Explore reported UAP/UFO sightings across the United States. Click any marker to see details, photos, and witness accounts.
+                </p>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-gray-900 p-4 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-yellow-500" id="total-sightings">12,847</div>
+                    <div class="text-sm text-gray-400">Total Sightings</div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-yellow-500" id="this-year">847</div>
+                    <div class="text-sm text-gray-400">This Year (2026)</div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-yellow-500" id="hotspot">California</div>
+                    <div class="text-sm text-gray-400">Top Hotspot</div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-yellow-500" id="last-24h">23</div>
+                    <div class="text-sm text-gray-400">Last 24 Hours</div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex flex-wrap gap-2 mb-4 justify-center">
+                <button class="filter-btn active bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium" data-filter="all">
+                    All Sightings
+                </button>
+                <button class="filter-btn bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium" data-filter="light">
+                    <i class="fas fa-lightbulb mr-1"></i> Lights
+                </button>
+                <button class="filter-btn bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium" data-filter="disc">
+                    <i class="fas fa-compact-disc mr-1"></i> Disc/Saucer
+                </button>
+                <button class="filter-btn bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium" data-filter="triangle">
+                    <i class="fas fa-play fa-rotate-180 mr-1"></i> Triangle
+                </button>
+                <button class="filter-btn bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium" data-filter="cigar">
+                    <i class="fas fa-minus mr-1"></i> Cigar/Cylinder
+                </button>
+                <button class="filter-btn bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium" data-filter="military">
+                    <i class="fas fa-fighter-jet mr-1"></i> Near Military
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="bg-gray-900 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-2xl">
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Sightings -->
+    <section class="py-12 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold mb-6 text-yellow-500">
+                <i class="fas fa-clock mr-2"></i>RECENT SIGHTINGS
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="recent-sightings">
+                <!-- Sighting cards populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotspots Section -->
+    <section class="py-12 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold mb-6 text-yellow-500">
+                <i class="fas fa-fire mr-2"></i>UFO HOTSPOTS
+            </h2>
+            <p class="text-gray-400 mb-8">These locations have the highest concentration of verified sightings. Many are near military bases, nuclear facilities, or geological anomalies.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-800 p-6 rounded-lg border-l-4 border-red-500">
+                    <h3 class="font-bold text-lg mb-2">Area 51 Perimeter, NV</h3>
+                    <p class="text-gray-400 text-sm mb-2">2,340+ sightings</p>
+                    <p class="text-gray-500 text-xs">Near Groom Lake. Restricted airspace. Frequent unexplained craft.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg border-l-4 border-orange-500">
+                    <h3 class="font-bold text-lg mb-2">Phoenix, AZ</h3>
+                    <p class="text-gray-400 text-sm mb-2">1,890+ sightings</p>
+                    <p class="text-gray-500 text-xs">Site of famous 1997 Phoenix Lights. Activity continues.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg border-l-4 border-yellow-500">
+                    <h3 class="font-bold text-lg mb-2">Skinwalker Ranch, UT</h3>
+                    <p class="text-gray-400 text-sm mb-2">890+ sightings</p>
+                    <p class="text-gray-500 text-xs">Paranormal hotspot. UFOs, cryptids, and anomalies.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg border-l-4 border-green-500">
+                    <h3 class="font-bold text-lg mb-2">San Luis Valley, CO</h3>
+                    <p class="text-gray-400 text-sm mb-2">670+ sightings</p>
+                    <p class="text-gray-500 text-xs">Cattle mutilations, lights, and craft. Ongoing activity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report CTA -->
+    <section class="py-12 bg-yellow-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">WITNESSED SOMETHING?</h2>
+            <p class="text-gray-800 mb-6">Your sighting matters. Report it anonymously and help build the most comprehensive UAP database.</p>
+            <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-lg text-lg font-semibold">
+                <i class="fas fa-paper-plane mr-2"></i>Submit Your Sighting
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p>&copy; 2026 TruthSeekerHQ. Question Everything.</p>
+            <p class="text-sm mt-2">Data sources: NUFORC, MUFON, public reports. Not affiliated with any government agency.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize map centered on USA
+        const map = L.map('map').setView([39.8283, -98.5795], 4);
+        
+        // Dark map tiles
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Custom UFO icon
+        const ufoIcon = L.divIcon({
+            html: '<div style="background: #f59e0b; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fbbf24; box-shadow: 0 0 10px #f59e0b;"></div>',
+            className: 'ufo-marker',
+            iconSize: [12, 12]
+        });
+
+        const militaryIcon = L.divIcon({
+            html: '<div style="background: #ef4444; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #f87171; box-shadow: 0 0 10px #ef4444;"></div>',
+            className: 'military-marker',
+            iconSize: [12, 12]
+        });
+
+        // Sample sighting data (would be API-driven in production)
+        const sightings = [
+            { lat: 37.2350, lng: -115.8111, type: 'military', title: 'Area 51 Perimeter', date: '2026-02-04', desc: 'Multiple bright orbs hovering over restricted airspace. Moved in formation before disappearing vertically at impossible speed.', witnesses: 3 },
+            { lat: 33.4484, lng: -112.0740, type: 'triangle', title: 'Phoenix, AZ', date: '2026-02-03', desc: 'Large triangular craft with lights at each point. Silent. Moved slowly across the sky for 15 minutes.', witnesses: 47 },
+            { lat: 40.2518, lng: -109.8915, type: 'light', title: 'Skinwalker Ranch Area', date: '2026-02-02', desc: 'Pulsating orange light appeared over the mesa. Changed colors before splitting into three separate objects.', witnesses: 5 },
+            { lat: 37.4749, lng: -105.8750, type: 'disc', title: 'San Luis Valley, CO', date: '2026-02-01', desc: 'Metallic disc-shaped object observed at low altitude. Cattle in nearby field reacted with distress.', witnesses: 2 },
+            { lat: 34.0522, lng: -118.2437, type: 'light', title: 'Los Angeles, CA', date: '2026-01-30', desc: 'Formation of 7 lights moving in synchronized pattern over downtown. Not aircraft or drones.', witnesses: 120 },
+            { lat: 36.1699, lng: -115.1398, type: 'disc', title: 'Las Vegas, NV', date: '2026-01-28', desc: 'Silver disc observed near Nellis AFB. Performed rapid acceleration maneuvers.', witnesses: 8 },
+            { lat: 47.6062, lng: -122.3321, type: 'cigar', title: 'Seattle, WA', date: '2026-01-25', desc: 'Cigar-shaped object with no wings observed moving against the wind. Estimated 200ft long.', witnesses: 15 },
+            { lat: 29.7604, lng: -95.3698, type: 'triangle', title: 'Houston, TX', date: '2026-01-22', desc: 'Black triangle with red lights at vertices. Hovered silently for 10 minutes before moving north.', witnesses: 23 },
+            { lat: 39.7392, lng: -104.9903, type: 'light', title: 'Denver, CO', date: '2026-01-20', desc: 'Cluster of white lights appeared, performed impossible maneuvers, then vanished.', witnesses: 67 },
+            { lat: 25.7617, lng: -80.1918, type: 'disc', title: 'Miami, FL', date: '2026-01-18', desc: 'Disc emerged from ocean, hovered briefly, then shot into the sky at extreme speed.', witnesses: 4 },
+            { lat: 41.8781, lng: -87.6298, type: 'light', title: 'Chicago, IL', date: '2026-01-15', desc: 'Multiple witnesses reported orange orbs over Lake Michigan moving in grid pattern.', witnesses: 89 },
+            { lat: 42.3601, lng: -71.0589, type: 'triangle', title: 'Boston, MA', date: '2026-01-12', desc: 'Silent black triangle observed over harbor. FAA denies any aircraft in area.', witnesses: 12 },
+            { lat: 33.749, lng: -84.388, type: 'cigar', title: 'Atlanta, GA', date: '2026-01-10', desc: 'Elongated metallic object observed at high altitude. Reflected sunlight unusually.', witnesses: 6 },
+            { lat: 32.7157, lng: -117.1611, type: 'military', title: 'San Diego, CA', date: '2026-01-08', desc: 'Tic-tac shaped object near Naval base. Similar to 2004 Nimitz encounter description.', witnesses: 11 },
+            { lat: 36.7783, lng: -119.4179, type: 'light', title: 'Fresno, CA', date: '2026-01-05', desc: 'Bright light descended into agricultural field. No impact crater found.', witnesses: 3 },
+        ];
+
+        // Add markers to map
+        const markers = [];
+        sightings.forEach(s => {
+            const icon = s.type === 'military' ? militaryIcon : ufoIcon;
+            const marker = L.marker([s.lat, s.lng], { icon: icon })
+                .bindPopup(`
+                    <div class="p-2">
+                        <h3 class="font-bold text-yellow-400 text-lg">${s.title}</h3>
+                        <p class="text-xs text-gray-400 mb-2">${s.date} • ${s.witnesses} witness${s.witnesses > 1 ? 'es' : ''}</p>
+                        <p class="text-sm">${s.desc}</p>
+                        <span class="inline-block mt-2 px-2 py-1 bg-yellow-600 text-xs rounded">${s.type.toUpperCase()}</span>
+                    </div>
+                `)
+                .addTo(map);
+            marker.sightingType = s.type;
+            markers.push(marker);
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active', 'bg-yellow-600'));
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('bg-gray-700'));
+                this.classList.add('active', 'bg-yellow-600');
+                this.classList.remove('bg-gray-700');
+                
+                const filter = this.dataset.filter;
+                markers.forEach(m => {
+                    if (filter === 'all' || m.sightingType === filter) {
+                        m.addTo(map);
+                    } else {
+                        map.removeLayer(m);
+                    }
+                });
+            });
+        });
+
+        // Populate recent sightings
+        const recentContainer = document.getElementById('recent-sightings');
+        sightings.slice(0, 6).forEach(s => {
+            recentContainer.innerHTML += `
+                <div class="sighting-card bg-gray-900 p-4 rounded-lg cursor-pointer" onclick="map.setView([${s.lat}, ${s.lng}], 10)">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-yellow-500">${s.title}</h3>
+                        <span class="text-xs text-gray-500">${s.date}</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-2">${s.desc.substring(0, 100)}...</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs px-2 py-1 bg-gray-800 rounded">${s.type.toUpperCase()}</span>
+                        <span class="text-xs text-gray-500"><i class="fas fa-users mr-1"></i>${s.witnesses} witnesses</span>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

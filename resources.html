@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources & Tools - TruthSeekerHQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .resource-card {
+            transition: all 0.3s ease;
+        }
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .category-tab.active {
+            background-color: #d97706;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-black bg-opacity-90 fixed w-full z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0">
+                        <span class="text-yellow-500 font-bold text-xl"><i class="fas fa-eye mr-2"></i>TRUTHSEEKER</span>
+                    </a>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="index.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="ufo-sightings.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">UFO Map</a>
+                            <a href="start-here.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Start Here</a>
+                            <a href="resources.html" class="text-yellow-500 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium">Resources</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                        <i class="fas fa-bell mr-1"></i> Get Alerts
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-8 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-yellow-500">
+                <i class="fas fa-database mr-3"></i>RESOURCES & TOOLS
+            </h1>
+            <p class="text-xl max-w-3xl mx-auto text-gray-300">
+                Curated archives, declassified documents, privacy tools, and research databases. Everything you need to find the truth.
+            </p>
+        </div>
+    </section>
+
+    <!-- Category Tabs -->
+    <section class="py-6 bg-gray-900 sticky top-16 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap gap-2 justify-center">
+                <button class="category-tab active bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-medium" data-category="all">
+                    All Resources
+                </button>
+                <button class="category-tab bg-gray-700 text-gray-300 hover:bg-gray-600 px-4 py-2 rounded-md text-sm font-medium" data-category="documents">
+                    <i class="fas fa-file-alt mr-1"></i> Documents
+                </button>
+                <button class="category-tab bg-gray-700 text-gray-300 hover:bg-gray-600 px-4 py-2 rounded-md text-sm font-medium" data-category="databases">
+                    <i class="fas fa-database mr-1"></i> Databases
+                </button>
+                <button class="category-tab bg-gray-700 text-gray-300 hover:bg-gray-600 px-4 py-2 rounded-md text-sm font-medium" data-category="privacy">
+                    <i class="fas fa-shield-alt mr-1"></i> Privacy Tools
+                </button>
+                <button class="category-tab bg-gray-700 text-gray-300 hover:bg-gray-600 px-4 py-2 rounded-md text-sm font-medium" data-category="books">
+                    <i class="fas fa-book mr-1"></i> Books
+                </button>
+                <button class="category-tab bg-gray-700 text-gray-300 hover:bg-gray-600 px-4 py-2 rounded-md text-sm font-medium" data-category="videos">
+                    <i class="fas fa-video mr-1"></i> Documentaries
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Grid -->
+    <section class="py-12 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Official Document Archives -->
+            <div class="mb-12" data-section="documents">
+                <h2 class="text-2xl font-bold mb-6 text-yellow-500 flex items-center">
+                    <i class="fas fa-file-alt mr-3"></i>OFFICIAL DOCUMENT ARCHIVES
+                    <span class="ml-3 text-xs bg-green-600 text-white px-2 py-1 rounded">VERIFIED SOURCES</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <a href="https://vault.fbi.gov/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-600 p-2 rounded mr-3">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">FBI Vault</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">6,700+ declassified FBI documents. UFO files, celebrity dossiers, famous cases.</p>
+                        <span class="text-blue-400 text-sm"><i class="fas fa-external-link-alt mr-1"></i> vault.fbi.gov</span>
+                    </a>
+
+                    <a href="https://www.cia.gov/readingroom/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-600 p-2 rounded mr-3">
+                                <i class="fas fa-user-secret text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">CIA Reading Room</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">CREST database with millions of pages. MK-Ultra files, Cold War ops, UFO documents.</p>
+                        <span class="text-blue-400 text-sm"><i class="fas fa-external-link-alt mr-1"></i> cia.gov/readingroom</span>
+                    </a>
+
+                    <a href="https://nsarchive.gwu.edu/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-600 p-2 rounded mr-3">
+                                <i class="fas fa-landmark text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">National Security Archive</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Independent research institute. FOIA victories, curated collections, primary sources.</p>
+                        <span class="text-blue-400 text-sm"><i class="fas fa-external-link-alt mr-1"></i> nsarchive.gwu.edu</span>
+                    </a>
+
+                    <a href="https://www.nsa.gov/Helpful-Links/NSA-FOIA/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-600 p-2 rounded mr-3">
+                                <i class="fas fa-satellite text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">NSA Declassified</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Signals intelligence history, cryptology, Cold War intercepts.</p>
+                        <span class="text-blue-400 text-sm"><i class="fas fa-external-link-alt mr-1"></i> nsa.gov/foia</span>
+                    </a>
+
+                    <a href="https://www.archives.gov/research/jfk" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-600 p-2 rounded mr-3">
+                                <i class="fas fa-crosshairs text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">JFK Assassination Records</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">National Archives collection. Warren Commission, HSCA, and recently released documents.</p>
+                        <span class="text-blue-400 text-sm"><i class="fas fa-external-link-alt mr-1"></i> archives.gov/jfk</span>
+                    </a>
+
+                    <a href="https://www.theblackvault.com/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-yellow-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-yellow-600 p-2 rounded mr-3">
+                                <i class="fas fa-folder-open text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">The Black Vault</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">3 million+ pages of declassified documents. UFOs, government secrets, FOIA archive.</p>
+                        <span class="text-yellow-400 text-sm"><i class="fas fa-external-link-alt mr-1"></i> theblackvault.com</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- UFO/UAP Databases -->
+            <div class="mb-12" data-section="databases">
+                <h2 class="text-2xl font-bold mb-6 text-yellow-500 flex items-center">
+                    <i class="fas fa-satellite-dish mr-3"></i>UFO/UAP DATABASES
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <a href="https://nuforc.org/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-green-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-600 p-2 rounded mr-3">
+                                <i class="fas fa-globe text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">NUFORC</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">National UFO Reporting Center. 150,000+ sighting reports since 1974. Searchable database.</p>
+                        <span class="text-green-400 text-sm"><i class="fas fa-external-link-alt mr-1"></i> nuforc.org</span>
+                    </a>
+
+                    <a href="https://www.mufon.com/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-green-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-600 p-2 rounded mr-3">
+                                <i class="fas fa-search text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">MUFON</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Mutual UFO Network. Field investigators, case files, global sighting database.</p>
+                        <span class="text-green-400 text-sm"><i class="fas fa-external-link-alt mr-1"></i> mufon.com</span>
+                    </a>
+
+                    <a href="https://ufostalker.com/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-green-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-600 p-2 rounded mr-3">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">UFO Stalker</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Real-time sighting map. Photos, videos, and reports as they happen.</p>
+                        <span class="text-green-400 text-sm"><i class="fas fa-external-link-alt mr-1"></i> ufostalker.com</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Privacy & Security Tools -->
+            <div class="mb-12" data-section="privacy">
+                <h2 class="text-2xl font-bold mb-6 text-yellow-500 flex items-center">
+                    <i class="fas fa-shield-alt mr-3"></i>PRIVACY & SECURITY TOOLS
+                    <span class="ml-3 text-xs bg-red-600 text-white px-2 py-1 rounded">PROTECT YOURSELF</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <a href="https://signal.org/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-600 p-2 rounded mr-3">
+                                <i class="fas fa-comment-alt text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Signal</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">End-to-end encrypted messaging. Used by journalists, activists, and whistleblowers.</p>
+                        <span class="text-purple-400 text-sm"><i class="fas fa-download mr-1"></i> Free • Open Source</span>
+                    </a>
+
+                    <a href="https://proton.me/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-600 p-2 rounded mr-3">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">ProtonMail</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Swiss-based encrypted email. Zero-access encryption. No ads, no tracking.</p>
+                        <span class="text-purple-400 text-sm"><i class="fas fa-download mr-1"></i> Free tier available</span>
+                    </a>
+
+                    <a href="https://www.torproject.org/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-600 p-2 rounded mr-3">
+                                <i class="fas fa-user-ninja text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Tor Browser</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Anonymous browsing. Prevents tracking, bypasses censorship, accesses .onion sites.</p>
+                        <span class="text-purple-400 text-sm"><i class="fas fa-download mr-1"></i> Free • Open Source</span>
+                    </a>
+
+                    <a href="https://mullvad.net/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-600 p-2 rounded mr-3">
+                                <i class="fas fa-network-wired text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Mullvad VPN</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">No-logs VPN. Pay with cash or crypto. No email required. Swedish jurisdiction.</p>
+                        <span class="text-purple-400 text-sm"><i class="fas fa-tag mr-1"></i> €5/month</span>
+                    </a>
+
+                    <a href="https://tails.net/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-600 p-2 rounded mr-3">
+                                <i class="fas fa-laptop text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Tails OS</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Portable operating system. Boots from USB, leaves no trace, routes all traffic through Tor.</p>
+                        <span class="text-purple-400 text-sm"><i class="fas fa-download mr-1"></i> Free • Open Source</span>
+                    </a>
+
+                    <a href="https://bitwarden.com/" target="_blank" class="resource-card bg-gray-800 p-6 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-600 p-2 rounded mr-3">
+                                <i class="fas fa-key text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Bitwarden</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-3">Open-source password manager. End-to-end encrypted. Self-host option available.</p>
+                        <span class="text-purple-400 text-sm"><i class="fas fa-download mr-1"></i> Free • Open Source</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Books -->
+            <div class="mb-12" data-section="books">
+                <h2 class="text-2xl font-bold mb-6 text-yellow-500 flex items-center">
+                    <i class="fas fa-book mr-3"></i>ESSENTIAL READING
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <div class="resource-card bg-gray-800 p-4 rounded-lg">
+                        <div class="h-40 bg-gray-700 rounded mb-3 flex items-center justify-center">
+                            <i class="fas fa-book text-4xl text-gray-600"></i>
+                        </div>
+                        <h3 class="font-bold text-sm mb-1">UFOs: Generals, Pilots, and Government Officials Go on the Record</h3>
+                        <p class="text-gray-500 text-xs mb-2">Leslie Kean</p>
+                        <a href="#" class="text-yellow-500 text-xs">View on Amazon →</a>
+                    </div>
+
+                    <div class="resource-card bg-gray-800 p-4 rounded-lg">
+                        <div class="h-40 bg-gray-700 rounded mb-3 flex items-center justify-center">
+                            <i class="fas fa-book text-4xl text-gray-600"></i>
+                        </div>
+                        <h3 class="font-bold text-sm mb-1">The Invisible Government</h3>
+                        <p class="text-gray-500 text-xs mb-2">David Wise & Thomas Ross</p>
+                        <a href="#" class="text-yellow-500 text-xs">View on Amazon →</a>
+                    </div>
+
+                    <div class="resource-card bg-gray-800 p-4 rounded-lg">
+                        <div class="h-40 bg-gray-700 rounded mb-3 flex items-center justify-center">
+                            <i class="fas fa-book text-4xl text-gray-600"></i>
+                        </div>
+                        <h3 class="font-bold text-sm mb-1">No Place to Hide: Edward Snowden, the NSA, and the U.S. Surveillance State</h3>
+                        <p class="text-gray-500 text-xs mb-2">Glenn Greenwald</p>
+                        <a href="#" class="text-yellow-500 text-xs">View on Amazon →</a>
+                    </div>
+
+                    <div class="resource-card bg-gray-800 p-4 rounded-lg">
+                        <div class="h-40 bg-gray-700 rounded mb-3 flex items-center justify-center">
+                            <i class="fas fa-book text-4xl text-gray-600"></i>
+                        </div>
+                        <h3 class="font-bold text-sm mb-1">Chaos: Charles Manson, the CIA, and the Secret History of the Sixties</h3>
+                        <p class="text-gray-500 text-xs mb-2">Tom O'Neill</p>
+                        <a href="#" class="text-yellow-500 text-xs">View on Amazon →</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Submit Resource CTA -->
+    <section class="py-12 bg-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-500">KNOW A RESOURCE WE'RE MISSING?</h2>
+            <p class="text-gray-400 mb-6">Help build the most comprehensive truth-seeking resource directory on the internet.</p>
+            <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-semibold">
+                <i class="fas fa-plus mr-2"></i>Submit a Resource
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p>&copy; 2026 TruthSeekerHQ. Question Everything.</p>
+            <p class="text-xs mt-2">We do not endorse all resources listed. Verify information independently.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Category filter functionality
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.category-tab').forEach(t => {
+                    t.classList.remove('active', 'bg-yellow-600', 'text-white');
+                    t.classList.add('bg-gray-700', 'text-gray-300');
+                });
+                this.classList.add('active', 'bg-yellow-600', 'text-white');
+                this.classList.remove('bg-gray-700', 'text-gray-300');
+                
+                // Filter sections
+                const category = this.dataset.category;
+                document.querySelectorAll('[data-section]').forEach(section => {
+                    if (category === 'all' || section.dataset.section === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
