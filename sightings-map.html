@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Sightings Map - UFOs & Cryptids | TruthSeekerHQ</title>
+    <meta name="description" content="Interactive map of UFO sightings, cryptid encounters, and unexplained phenomena worldwide.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        #map { height: calc(100vh - 200px); min-height: 500px; }
+        .leaflet-popup-content-wrapper { background: #1f2937; color: #f3f4f6; border-radius: 8px; }
+        .leaflet-popup-tip { background: #1f2937; }
+        .filter-btn.active { background-color: #f59e0b; color: white; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+    <!-- Nav -->
+    <nav class="bg-black bg-opacity-95 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center">
+                    <i class="fas fa-eye text-yellow-500 text-2xl mr-2"></i>
+                    <span class="text-yellow-500 font-bold text-xl">TRUTHSEEKER<span class="text-gray-400 font-normal">HQ</span></span>
+                </a>
+                <div class="hidden md:flex items-baseline space-x-1">
+                    <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Home</a>
+                    <a href="sightings-map.html" class="text-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Sightings Map</a>
+                    <a href="cryptids.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Cryptid Tracker</a>
+                    <a href="shop.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Shop</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Filters -->
+    <div class="bg-gray-800 py-4 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            <div class="flex flex-wrap gap-2">
+                <button class="filter-btn active px-4 py-2 rounded-full text-sm font-medium" data-filter="all">
+                    All Sightings
+                </button>
+                <button class="filter-btn bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-full text-sm font-medium" data-filter="ufo">
+                    <i class="fas fa-satellite-dish mr-1 text-blue-400"></i> UFO/UAP
+                </button>
+                <button class="filter-btn bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-full text-sm font-medium" data-filter="cryptid">
+                    <i class="fas fa-paw mr-1 text-green-400"></i> Cryptids
+                </button>
+                <button class="filter-btn bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-full text-sm font-medium" data-filter="paranormal">
+                    <i class="fas fa-ghost mr-1 text-purple-400"></i> Paranormal
+                </button>
+            </div>
+            <div class="flex items-center gap-4 text-sm">
+                <span><span class="inline-block w-3 h-3 rounded-full bg-blue-500 mr-1"></span> UFO</span>
+                <span><span class="inline-block w-3 h-3 rounded-full bg-green-500 mr-1"></span> Cryptid</span>
+                <span><span class="inline-block w-3 h-3 rounded-full bg-purple-500 mr-1"></span> Paranormal</span>
+                <span><span class="inline-block w-3 h-3 rounded-full bg-red-500 mr-1"></span> Hotspot</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map -->
+    <div id="map"></div>
+
+    <!-- Stats Bar -->
+    <div class="bg-gray-800 py-4 px-4">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div>
+                <div class="text-2xl font-bold text-yellow-500">162,847</div>
+                <div class="text-xs text-gray-400">Total Sightings</div>
+            </div>
+            <div>
+                <div class="text-2xl font-bold text-blue-500">142,203</div>
+                <div class="text-xs text-gray-400">UFO Reports</div>
+            </div>
+            <div>
+                <div class="text-2xl font-bold text-green-500">18,644</div>
+                <div class="text-xs text-gray-400">Cryptid Encounters</div>
+            </div>
+            <div>
+                <div class="text-2xl font-bold text-red-500">47</div>
+                <div class="text-xs text-gray-400">Reports Today</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-gray-900 py-8 px-4 text-center">
+        <h2 class="text-xl font-bold mb-2">Witnessed Something?</h2>
+        <p class="text-gray-400 mb-4">Submit your sighting anonymously and help build the database.</p>
+        <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-medium">
+            <i class="fas fa-paper-plane mr-2"></i>Submit Report
+        </button>
+    </div>
+
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([30, 0], 2);
+        
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Sighting data
+        const sightings = [
+            // UFOs
+            { lat: 33.4484, lng: -112.0740, type: 'ufo', title: 'Phoenix, AZ', desc: 'Triangle formation, 47 witnesses', date: '2026-02-03' },
+            { lat: 37.2350, lng: -115.8111, type: 'hotspot', title: 'Area 51', desc: 'Multiple orbs, restricted airspace', date: '2026-02-04' },
+            { lat: 32.7157, lng: -117.1611, type: 'ufo', title: 'San Diego, CA', desc: 'Tic-tac object near Naval base', date: '2026-01-28' },
+            { lat: 47.6062, lng: -122.3321, type: 'ufo', title: 'Seattle, WA', desc: 'Cigar-shaped, 200ft estimated', date: '2026-01-25' },
+            { lat: 29.7604, lng: -95.3698, type: 'ufo', title: 'Houston, TX', desc: 'Black triangle with red lights', date: '2026-01-22' },
+            { lat: 41.8781, lng: -87.6298, type: 'ufo', title: 'Chicago, IL', desc: 'Orange orbs over Lake Michigan', date: '2026-01-15' },
+            { lat: 51.5074, lng: -0.1278, type: 'ufo', title: 'London, UK', desc: 'Formation of lights, 12 witnesses', date: '2026-01-10' },
+            { lat: 35.6762, lng: 139.6503, type: 'ufo', title: 'Tokyo, Japan', desc: 'Bright disc, filmed by multiple', date: '2026-01-08' },
+            
+            // Cryptids
+            { lat: 47.8021, lng: -123.8345, type: 'cryptid', title: 'Olympic NF, WA', desc: 'Bigfoot - 8ft bipedal figure', date: '2026-02-02' },
+            { lat: 57.3229, lng: -4.4543, type: 'cryptid', title: 'Loch Ness, Scotland', desc: 'Nessie - sonar contact at 150m', date: '2026-01-28' },
+            { lat: 38.8448, lng: -82.1376, type: 'hotspot', title: 'Point Pleasant, WV', desc: 'Mothman - red eyes, wings', date: '2026-01-20' },
+            { lat: 18.2208, lng: -66.5901, type: 'cryptid', title: 'Puerto Rico', desc: 'Chupacabra - livestock attacks', date: '2026-01-18' },
+            { lat: 27.9881, lng: 86.9250, type: 'cryptid', title: 'Himalayas', desc: 'Yeti - tracks found at 18,000ft', date: '2026-01-12' },
+            { lat: 40.2518, lng: -109.8915, type: 'hotspot', title: 'Skinwalker Ranch, UT', desc: 'Multiple phenomena reported', date: '2026-02-01' },
+            { lat: -33.8688, lng: 151.2093, type: 'cryptid', title: 'Blue Mountains, AU', desc: 'Yowie sighting by hikers', date: '2026-01-05' },
+            
+            // Paranormal
+            { lat: 39.0997, lng: -94.5786, type: 'paranormal', title: 'Kansas City, MO', desc: 'Shadow figure, multiple witnesses', date: '2026-01-30' },
+            { lat: 29.9511, lng: -90.0715, type: 'paranormal', title: 'New Orleans, LA', desc: 'Apparition at historic site', date: '2026-01-25' },
+            { lat: 55.9533, lng: -3.1883, type: 'paranormal', title: 'Edinburgh, Scotland', desc: 'Underground vault activity', date: '2026-01-18' },
+        ];
+
+        // Create markers
+        const markers = [];
+        const layerGroups = {
+            all: L.layerGroup(),
+            ufo: L.layerGroup(),
+            cryptid: L.layerGroup(),
+            paranormal: L.layerGroup(),
+            hotspot: L.layerGroup()
+        };
+
+        sightings.forEach(s => {
+            const colors = {
+                ufo: '#3b82f6',
+                cryptid: '#22c55e',
+                paranormal: '#a855f7',
+                hotspot: '#ef4444'
+            };
+            const color = colors[s.type] || '#f59e0b';
+            
+            const icon = L.divIcon({
+                html: `<div style="background:${color};width:12px;height:12px;border-radius:50%;border:2px solid white;box-shadow:0 0 10px ${color};"></div>`,
+                className: '',
+                iconSize: [12, 12]
+            });
+
+            const marker = L.marker([s.lat, s.lng], { icon })
+                .bindPopup(`
+                    <div class="p-2">
+                        <h3 class="font-bold text-yellow-400">${s.title}</h3>
+                        <p class="text-xs text-gray-400 mb-1">${s.date}</p>
+                        <p class="text-sm">${s.desc}</p>
+                        <span class="inline-block mt-2 px-2 py-1 bg-gray-700 text-xs rounded">${s.type.toUpperCase()}</span>
+                    </div>
+                `);
+
+            marker.sightingType = s.type;
+            markers.push(marker);
+            marker.addTo(layerGroups.all);
+            marker.addTo(layerGroups[s.type] || layerGroups.all);
+        });
+
+        layerGroups.all.addTo(map);
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active');
+                    b.classList.add('bg-gray-700');
+                });
+                this.classList.add('active');
+                this.classList.remove('bg-gray-700');
+
+                const filter = this.dataset.filter;
+                
+                // Remove all markers
+                markers.forEach(m => map.removeLayer(m));
+                
+                // Add filtered markers
+                markers.forEach(m => {
+                    if (filter === 'all' || m.sightingType === filter) {
+                        m.addTo(map);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

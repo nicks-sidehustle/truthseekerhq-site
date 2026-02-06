@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Cryptid Hunter Gear & Merch | TruthSeekerHQ</title>
+    <meta name="description" content="Bigfoot believer? Nessie hunter? Get the gear. T-shirts, patches, field journals, and more.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-card { transition: all 0.3s ease; }
+        .product-card:hover { transform: translateY(-5px); }
+        .category-btn.active { background-color: #16a34a; color: white; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+    <!-- Nav -->
+    <nav class="bg-black bg-opacity-95 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center">
+                    <i class="fas fa-eye text-yellow-500 text-2xl mr-2"></i>
+                    <span class="text-yellow-500 font-bold text-xl">TRUTHSEEKER<span class="text-gray-400 font-normal">HQ</span></span>
+                </a>
+                <div class="hidden md:flex items-baseline space-x-1">
+                    <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Home</a>
+                    <a href="cryptids.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Cryptid Tracker</a>
+                    <a href="shop.html" class="text-green-500 px-3 py-2 rounded-md text-sm font-medium">Shop</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-b from-green-900/30 to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <span class="bg-green-600/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium">
+                <i class="fas fa-tshirt mr-2"></i>BELIEVER GEAR
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold mt-6 mb-4">
+                Cryptid Hunter <span class="text-green-400">Shop</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                Show your allegiance. Gear up for expeditions. Look good while hunting monsters.
+            </p>
+        </div>
+    </section>
+
+    <!-- Category Filters -->
+    <section class="py-6 bg-gray-800 sticky top-16 z-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-wrap gap-2 justify-center">
+                <button class="category-btn active px-4 py-2 rounded-full text-sm font-medium bg-green-600 text-white">All</button>
+                <button class="category-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-700 hover:bg-gray-600">
+                    <i class="fas fa-paw mr-1"></i>Bigfoot
+                </button>
+                <button class="category-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-700 hover:bg-gray-600">
+                    <i class="fas fa-water mr-1"></i>Nessie
+                </button>
+                <button class="category-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-700 hover:bg-gray-600">
+                    <i class="fas fa-feather-alt mr-1"></i>Mothman
+                </button>
+                <button class="category-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-700 hover:bg-gray-600">
+                    <i class="fas fa-satellite-dish mr-1"></i>UFO
+                </button>
+                <button class="category-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-700 hover:bg-gray-600">
+                    <i class="fas fa-tools mr-1"></i>Field Gear
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Product 1 -->
+                <div class="product-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-paw text-6xl text-green-500 mb-2"></i>
+                            <p class="text-xs text-gray-500">Product Image</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs text-green-400">BIGFOOT</span>
+                        <h3 class="font-bold mb-1">"I Believe" Sasquatch Tee</h3>
+                        <p class="text-gray-400 text-sm mb-3">Classic fit, 100% cotton</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-green-400">$29.99</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-water text-6xl text-blue-500 mb-2"></i>
+                            <p class="text-xs text-gray-500">Product Image</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs text-blue-400">NESSIE</span>
+                        <h3 class="font-bold mb-1">"I Searched Loch Ness" Hoodie</h3>
+                        <p class="text-gray-400 text-sm mb-3">Expedition commemorative</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-green-400">$49.99</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-feather-alt text-6xl text-red-500 mb-2"></i>
+                            <p class="text-xs text-gray-500">Product Image</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs text-red-400">MOTHMAN</span>
+                        <h3 class="font-bold mb-1">Mothman Festival 2026 Tee</h3>
+                        <p class="text-gray-400 text-sm mb-3">Limited edition event shirt</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-green-400">$34.99</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-satellite-dish text-6xl text-yellow-500 mb-2"></i>
+                            <p class="text-xs text-gray-500">Product Image</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs text-yellow-400">UFO</span>
+                        <h3 class="font-bold mb-1">"I Want to Believe" Cap</h3>
+                        <p class="text-gray-400 text-sm mb-3">Embroidered snapback</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-green-400">$24.99</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-book text-6xl text-amber-500 mb-2"></i>
+                            <p class="text-xs text-gray-500">Product Image</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs text-amber-400">FIELD GEAR</span>
+                        <h3 class="font-bold mb-1">Cryptid Field Journal</h3>
+                        <p class="text-gray-400 text-sm mb-3">Waterproof, grid pages, 200pp</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-green-400">$19.99</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-certificate text-6xl text-green-500 mb-2"></i>
+                            <p class="text-xs text-gray-500">Product Image</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs text-green-400">PATCHES</span>
+                        <h3 class="font-bold mb-1">Certified Monster Hunter Patch</h3>
+                        <p class="text-gray-400 text-sm mb-3">Iron-on, 3" embroidered</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-green-400">$9.99</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-map-marked-alt text-6xl text-blue-500 mb-2"></i>
+                            <p class="text-xs text-gray-500">Product Image</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs text-blue-400">PRINTS</span>
+                        <h3 class="font-bold mb-1">Cryptid Hotspots Map Poster</h3>
+                        <p class="text-gray-400 text-sm mb-3">18x24" art print</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-green-400">$29.99</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-mug-hot text-6xl text-orange-500 mb-2"></i>
+                            <p class="text-xs text-gray-500">Product Image</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs text-orange-400">DRINKWARE</span>
+                        <h3 class="font-bold mb-1">"Morning After Bigfoot Hunt" Mug</h3>
+                        <p class="text-gray-400 text-sm mb-3">15oz ceramic</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-green-400">$16.99</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Expedition Gear -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-gradient-to-r from-green-900/50 to-blue-900/50 rounded-2xl p-8 md:p-12 text-center">
+                <span class="text-green-400 text-sm font-medium"><i class="fas fa-magic mr-2"></i>CUSTOM GEAR</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-4">Planning an Expedition?</h2>
+                <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
+                    Get custom "I Was There" merch for your Bigfoot hunt, Nessie search, or Mothman meetup. 
+                    Minimum 10 items. Perfect for groups and events.
+                </p>
+                <a href="#" class="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold">
+                    <i class="fas fa-envelope mr-2"></i>Request Custom Quote
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sticker Packs -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-8"><i class="fas fa-sticky-note text-green-500 mr-2"></i>Sticker Packs</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-800 rounded-xl p-6 text-center">
+                    <i class="fas fa-paw text-5xl text-green-500 mb-4"></i>
+                    <h3 class="font-bold mb-2">Bigfoot Pack</h3>
+                    <p class="text-gray-400 text-sm mb-2">10 vinyl stickers</p>
+                    <span class="text-green-400 font-bold">$12.99</span>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-6 text-center">
+                    <i class="fas fa-water text-5xl text-blue-500 mb-4"></i>
+                    <h3 class="font-bold mb-2">Nessie Pack</h3>
+                    <p class="text-gray-400 text-sm mb-2">10 vinyl stickers</p>
+                    <span class="text-green-400 font-bold">$12.99</span>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-6 text-center">
+                    <i class="fas fa-satellite-dish text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="font-bold mb-2">UFO Pack</h3>
+                    <p class="text-gray-400 text-sm mb-2">10 vinyl stickers</p>
+                    <span class="text-green-400 font-bold">$12.99</span>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-6 text-center">
+                    <i class="fas fa-ghost text-5xl text-purple-500 mb-4"></i>
+                    <h3 class="font-bold mb-2">Paranormal Mix</h3>
+                    <p class="text-gray-400 text-sm mb-2">15 vinyl stickers</p>
+                    <span class="text-green-400 font-bold">$16.99</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500">
+            <p class="mb-2">&copy; 2026 TruthSeekerHQ. Question Everything.</p>
+            <p class="text-xs">All products printed on demand. Ships worldwide. Returns accepted within 30 days.</p>
+        </div>
+    </footer>
+</body>
+</html>

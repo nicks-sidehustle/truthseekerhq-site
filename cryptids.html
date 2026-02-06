@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptid Tracker - Monster Sightings & Tourism | TruthSeekerHQ</title>
+    <meta name="description" content="Track Bigfoot, Loch Ness Monster, Mothman and more. Sighting maps, hotspots, events, and expedition guides.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .cryptid-card { transition: all 0.3s ease; }
+        .cryptid-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2); }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans">
+    <!-- Nav -->
+    <nav class="bg-black bg-opacity-95 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center">
+                    <i class="fas fa-eye text-yellow-500 text-2xl mr-2"></i>
+                    <span class="text-yellow-500 font-bold text-xl">TRUTHSEEKER<span class="text-gray-400 font-normal">HQ</span></span>
+                </a>
+                <div class="hidden md:flex items-baseline space-x-1">
+                    <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Home</a>
+                    <a href="sightings-map.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Sightings Map</a>
+                    <a href="cryptids.html" class="text-green-500 px-3 py-2 rounded-md text-sm font-medium">Cryptid Tracker</a>
+                    <a href="shop.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Shop</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="py-16 bg-gradient-to-b from-green-900/30 to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <span class="bg-green-600/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium">
+                <i class="fas fa-paw mr-2"></i>MONSTER TOURISM
+            </span>
+            <h1 class="text-4xl md:text-6xl font-bold mt-6 mb-4">
+                <span class="text-green-400">Cryptid</span> Tracker
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                The ultimate directory for legendary creatures. Sightings, hotspots, events, and expedition guides.
+            </p>
+        </div>
+    </section>
+
+    <!-- Featured Cryptids Grid -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-8"><i class="fas fa-star text-green-500 mr-2"></i>Featured Creatures</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Bigfoot -->
+                <div class="cryptid-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1608889825103-eb2d9d0a92da?w=600');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-green-600 text-white text-xs px-2 py-1 rounded">NORTH AMERICA</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Bigfoot / Sasquatch</h3>
+                        <p class="text-gray-400 text-sm mb-4">The legendary ape-like creature of Pacific Northwest forests.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-400 text-sm"><i class="fas fa-map-marker-alt mr-1"></i>120+ hotspots</span>
+                            <a href="#" class="text-green-400 hover:text-green-300 text-sm font-medium">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loch Ness -->
+                <div class="cryptid-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded">SCOTLAND</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Loch Ness Monster</h3>
+                        <p class="text-gray-400 text-sm mb-4">The aquatic creature of the Scottish Highlands since 565 AD.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-400 text-sm"><i class="fas fa-map-marker-alt mr-1"></i>15+ hotspots</span>
+                            <a href="#" class="text-green-400 hover:text-green-300 text-sm font-medium">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mothman -->
+                <div class="cryptid-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded">WEST VIRGINIA</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Mothman</h3>
+                        <p class="text-gray-400 text-sm mb-4">Winged humanoid with glowing red eyes. Disaster omen?</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-400 text-sm"><i class="fas fa-map-marker-alt mr-1"></i>8+ hotspots</span>
+                            <a href="#" class="text-green-400 hover:text-green-300 text-sm font-medium">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chupacabra -->
+                <div class="cryptid-card bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1534481016308-0fca71578ae5?w=600');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-purple-600 text-white text-xs px-2 py-1 rounded">LATIN AMERICA</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Chupacabra</h3>
+                        <p class="text-gray-400 text-sm mb-4">The "goat-sucker" blamed for livestock attacks since 1995.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-400 text-sm"><i class="fas fa-map-marker-alt mr-1"></i>45+ hotspots</span>
+                            <a href="#" class="text-green-400 hover:text-green-300 text-sm font-medium">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-8"><i class="fas fa-calendar text-green-500 mr-2"></i>Upcoming Events</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-900 rounded-xl overflow-hidden">
+                    <div class="bg-green-600 text-white text-center py-3">
+                        <span class="text-2xl font-bold">SEP 16-17</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2">Mothman Festival</h3>
+                        <p class="text-gray-400 text-sm mb-3">Point Pleasant, WV</p>
+                        <p class="text-gray-500 text-sm">Annual celebration of the Mothman legend. Vendors, speakers, tours.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 rounded-xl overflow-hidden">
+                    <div class="bg-green-600 text-white text-center py-3">
+                        <span class="text-2xl font-bold">OCT 20-22</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2">International Bigfoot Conference</h3>
+                        <p class="text-gray-400 text-sm mb-3">Portland, OR</p>
+                        <p class="text-gray-500 text-sm">Researchers, evidence presentations, and field expeditions.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 rounded-xl overflow-hidden">
+                    <div class="bg-green-600 text-white text-center py-3">
+                        <span class="text-2xl font-bold">JUN 15-30</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2">Loch Ness Expedition 2026</h3>
+                        <p class="text-gray-400 text-sm mb-3">Inverness, Scotland</p>
+                        <p class="text-gray-500 text-sm">Largest Nessie hunt in decades. Sonar, drones, and volunteers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop CTA -->
+    <section class="py-16 bg-gradient-to-r from-green-900 to-gray-900">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Gear Up for the Hunt</h2>
+            <p class="text-gray-400 mb-6">T-shirts, patches, field journals, and more for serious cryptid investigators.</p>
+            <a href="shop.html" class="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg text-lg font-semibold">
+                <i class="fas fa-shopping-bag mr-2"></i>Visit Shop
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500">
+            <p>&copy; 2026 TruthSeekerHQ. Question Everything.</p>
+        </div>
+    </footer>
+</body>
+</html>

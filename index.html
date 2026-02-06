@@ -3,543 +3,448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truth Unveiled - Government Conspiracies Exposed</title>
+    <title>TruthSeekerHQ - Uncover What They're Hiding</title>
+    <meta name="description" content="UFO sightings, cryptid encounters, government cover-ups, and the unexplained. The truth is out there — we help you find it.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        .conspiracy-card {
-            transition: all 0.3s ease;
-            border-left: 4px solid #f59e0b;
-        }
-        .conspiracy-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
-        }
-        .timeline-item {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 30px;
-        }
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 5px;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #f59e0b;
-        }
-        .timeline-item:after {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 20px;
-            width: 1px;
-            height: calc(100% - 15px);
-            background: #4b5563;
-        }
-        .timeline-item:last-child:after {
-            display: none;
-        }
         .glitch {
             position: relative;
-        }
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.8;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
         }
         .glitch::before {
-            color: #0ea5e9;
-            z-index: -1;
-            animation: glitch-effect 3s infinite;
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: -2px;
+            text-shadow: 2px 0 #f59e0b;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
         }
-        .glitch::after {
-            color: #ec4899;
-            z-index: -2;
-            animation: glitch-effect 2s infinite reverse;
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            100% { clip: rect(67px, 9999px, 62px, 0); }
         }
-        @keyframes glitch-effect {
-            0% { transform: translate(0); }
-            20% { transform: translate(-3px, 3px); }
-            40% { transform: translate(-3px, -3px); }
-            60% { transform: translate(3px, 3px); }
-            80% { transform: translate(3px, -3px); }
-            100% { transform: translate(0); }
+        .card-hover {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
         }
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #f59e0b;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-left-color: #f59e0b;
+            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.15);
         }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        .cryptid-card:hover { border-left-color: #22c55e; box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15); }
+        .ufo-card:hover { border-left-color: #3b82f6; box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15); }
+        #mini-map { height: 300px; border-radius: 0.5rem; }
+        .breaking-banner {
+            background: linear-gradient(90deg, #991b1b 0%, #dc2626 50%, #991b1b 100%);
+            animation: pulse-bg 2s infinite;
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #f59e0b; }
+        @keyframes pulse-bg {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+        .scroll-fade { animation: fadeInUp 0.6s ease-out; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans">
+    <!-- Breaking News Banner -->
+    <div class="breaking-banner text-white py-2 px-4 text-center text-sm">
+        <i class="fas fa-bolt mr-2"></i>
+        <span class="font-bold">BREAKING:</span> Trump Administration Greenlights UFO Disclosure — 
+        <a href="articles/ai-first-contact.html" class="underline hover:text-yellow-300">Read Our Analysis →</a>
+    </div>
+
     <!-- Navigation -->
-    <nav class="bg-black bg-opacity-90 fixed w-full z-50 shadow-lg">
+    <nav class="bg-black bg-opacity-95 sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <span class="text-yellow-500 font-bold text-xl"><i class="fas fa-eye mr-2"></i>TRUTHSEEKER</span>
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="index.html" class="text-yellow-500 hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                            <a href="articles/index.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Articles</a>
-                            <a href="ufo-sightings.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">UFO Map</a>
-                            <a href="start-here.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Start Here</a>
-                            <a href="resources.html" class="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Resources</a>
-                        </div>
-                    </div>
+                <a href="index.html" class="flex items-center">
+                    <i class="fas fa-eye text-yellow-500 text-2xl mr-2"></i>
+                    <span class="text-yellow-500 font-bold text-xl">TRUTHSEEKER<span class="text-gray-400 font-normal">HQ</span></span>
+                </a>
+                <div class="hidden md:flex items-baseline space-x-1">
+                    <a href="index.html" class="text-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="articles/index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Investigations</a>
+                    <a href="sightings-map.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Sightings Map</a>
+                    <a href="cryptids.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Cryptid Tracker</a>
+                    <a href="resources.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Resources</a>
+                    <a href="shop.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm">Shop</a>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
-                        <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium">
-                            <i class="fas fa-user-secret mr-1"></i> Join The Movement
-                        </button>
-                    </div>
-                </div>
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button" class="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+                <a href="#newsletter" class="hidden md:block bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                    <i class="fas fa-bell mr-1"></i> Get Alerts
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="parallax min-h-screen flex items-center justify-center bg-gray-900 bg-opacity-70" style="background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-32">
-            <h1 class="glitch text-5xl md:text-7xl font-extrabold mb-6" data-text="THE TRUTH IS OUT THERE">
-                <span class="typewriter">THE TRUTH IS OUT THERE</span>
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1600');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-gray-900"></div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <div class="mb-6">
+                <span class="bg-yellow-600/20 text-yellow-400 px-4 py-2 rounded-full text-sm font-medium border border-yellow-600/30">
+                    <i class="fas fa-satellite-dish mr-2"></i>150,000+ Documented Sightings
+                </span>
+            </div>
+            
+            <h1 class="glitch text-5xl md:text-7xl font-black mb-6" data-text="THE TRUTH IS OUT THERE">
+                THE TRUTH IS OUT THERE
             </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Uncovering the dark secrets governments don't want you to know. From JFK to 9/11, we expose the facts behind the cover-ups.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg text-lg font-semibold transition duration-300">
-                    <i class="fas fa-book-dead mr-2"></i> Explore Conspiracies
-                </button>
-                <button class="bg-transparent hover:bg-gray-800 text-white border border-yellow-600 px-6 py-3 rounded-lg text-lg font-semibold transition duration-300">
-                    <i class="fas fa-question-circle mr-2"></i> Learn The Truth
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Conspiracies Section -->
-    <section id="conspiracies" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-500">PROVEN CONSPIRACIES</h2>
-                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
-                <p class="text-xl max-w-3xl mx-auto">These aren't theories - these are documented cases of government deception and cover-ups.</p>
+            
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                UFO encounters. Cryptid sightings. Government cover-ups. We track what they don't want you to see.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                <a href="sightings-map.html" class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition">
+                    <i class="fas fa-map-marked-alt mr-2"></i> Explore Sightings Map
+                </a>
+                <a href="start-here.html" class="bg-transparent hover:bg-white/10 text-white border border-white/30 px-8 py-4 rounded-lg text-lg font-semibold transition">
+                    <i class="fas fa-rabbit mr-2"></i> Down the Rabbit Hole
+                </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Conspiracy Card 1 -->
-                <div class="conspiracy-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-yellow-600 p-3 rounded-full mr-4">
-                            <i class="fas fa-user-secret text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">JFK Assassination</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">The Warren Commission's "lone gunman" theory has been thoroughly debunked by multiple investigations. Ballistics evidence, witness testimonies, and the infamous "magic bullet" theory don't add up.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-yellow-500 text-sm font-semibold"><i class="fas fa-calendar-alt mr-1"></i> 1963 Cover-Up</span>
-                        <a href="#" class="text-yellow-500 hover:text-yellow-400 text-sm font-semibold">Read More <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div class="bg-black/40 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                    <div class="text-2xl font-bold text-yellow-500">12,847</div>
+                    <div class="text-xs text-gray-400">UFO Reports 2026</div>
                 </div>
-
-                <!-- Conspiracy Card 2 -->
-                <div class="conspiracy-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-yellow-600 p-3 rounded-full mr-4">
-                            <i class="fas fa-building text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">9/11 Inside Job</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Building 7's collapse (never hit by a plane), the Pentagon's missing plane wreckage, and pre-9/11 put options on airline stocks point to government foreknowledge if not direct involvement.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-yellow-500 text-sm font-semibold"><i class="fas fa-calendar-alt mr-1"></i> 2001 False Flag</span>
-                        <a href="#" class="text-yellow-500 hover:text-yellow-400 text-sm font-semibold">Read More <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
+                <div class="bg-black/40 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                    <div class="text-2xl font-bold text-green-500">847</div>
+                    <div class="text-xs text-gray-400">Cryptid Sightings</div>
                 </div>
-
-                <!-- Conspiracy Card 3 -->
-                <div class="conspiracy-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-yellow-600 p-3 rounded-full mr-4">
-                            <i class="fas fa-virus text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Tuskegee Syphilis Study</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">The U.S. Public Health Service knowingly withheld treatment from 600 black men with syphilis from 1932-1972 to study disease progression. This wasn't revealed until 1972.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-yellow-500 text-sm font-semibold"><i class="fas fa-calendar-alt mr-1"></i> 1932-1972</span>
-                        <a href="#" class="text-yellow-500 hover:text-yellow-400 text-sm font-semibold">Read More <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
+                <div class="bg-black/40 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                    <div class="text-2xl font-bold text-blue-500">2.3M</div>
+                    <div class="text-xs text-gray-400">Declassified Pages</div>
                 </div>
-
-                <!-- Conspiracy Card 4 -->
-                <div class="conspiracy-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-yellow-600 p-3 rounded-full mr-4">
-                            <i class="fas fa-radiation text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">MKUltra Mind Control</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">The CIA's program (1953-1973) tested LSD and other methods on unwitting citizens to develop mind control techniques. Documents were mostly destroyed when exposed.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-yellow-500 text-sm font-semibold"><i class="fas fa-calendar-alt mr-1"></i> 1953-1973</span>
-                        <a href="#" class="text-yellow-500 hover:text-yellow-400 text-sm font-semibold">Read More <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
-                </div>
-
-                <!-- Conspiracy Card 5 -->
-                <div class="conspiracy-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-yellow-600 p-3 rounded-full mr-4">
-                            <i class="fas fa-gas-pump text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Gulf of Tonkin Incident</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">The fabricated attack on U.S. ships was used to justify full-scale Vietnam War involvement. Declassified documents prove the second attack never happened.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-yellow-500 text-sm font-semibold"><i class="fas fa-calendar-alt mr-1"></i> 1964 Deception</span>
-                        <a href="#" class="text-yellow-500 hover:text-yellow-400 text-sm font-semibold">Read More <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
-                </div>
-
-                <!-- Conspiracy Card 6 -->
-                <div class="conspiracy-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-yellow-600 p-3 rounded-full mr-4">
-                            <i class="fas fa-smoking text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Big Tobacco Cover-Up</h3>
-                    </div>
-                    <p class="text-gray-300 mb-4">Tobacco companies knew cigarettes caused cancer in the 1950s but funded fake research to obscure the truth for decades, with government complicity.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-yellow-500 text-sm font-semibold"><i class="fas fa-calendar-alt mr-1"></i> 1950s-1990s</span>
-                        <a href="#" class="text-yellow-500 hover:text-yellow-400 text-sm font-semibold">Read More <i class="fas fa-arrow-right ml-1"></i></a>
-                    </div>
+                <div class="bg-black/40 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                    <div class="text-2xl font-bold text-red-500">23</div>
+                    <div class="text-xs text-gray-400">Reports Today</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Timeline Section -->
-    <section id="timeline" class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-500">HISTORY OF DECEPTION</h2>
-                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
-                <p class="text-xl max-w-3xl mx-auto">A chronological record of government lies and cover-ups throughout modern history.</p>
+    <!-- Featured Investigation -->
+    <section class="py-12 bg-gradient-to-b from-gray-900 to-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <a href="articles/ai-first-contact.html" class="block bg-gradient-to-r from-yellow-600/20 to-red-600/20 border border-yellow-600/30 rounded-xl p-6 md:p-8 hover:border-yellow-500 transition">
+                <div class="flex flex-col md:flex-row md:items-center gap-6">
+                    <div class="flex-shrink-0">
+                        <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">FEATURED INVESTIGATION</span>
+                    </div>
+                    <div class="flex-grow">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-2">What If AI IS First Contact?</h2>
+                        <p class="text-gray-400">Trump just greenlit UFO disclosure. But what if first contact already happened — and you've been talking to it every day?</p>
+                    </div>
+                    <div class="flex-shrink-0 text-yellow-500">
+                        <i class="fas fa-arrow-right text-2xl"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Two-Column: UFOs + Cryptids -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- UFO Column -->
+                <div>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-blue-400">
+                            <i class="fas fa-satellite-dish mr-2"></i>UFO / UAP Sightings
+                        </h2>
+                        <a href="ufo-sightings.html" class="text-blue-400 hover:text-blue-300 text-sm">View All →</a>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="card-hover ufo-card bg-gray-900 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded">VERIFIED</span>
+                                    <h3 class="font-bold mt-2">Phoenix, AZ — Triangle Formation</h3>
+                                    <p class="text-gray-400 text-sm">47 witnesses reported silent triangular craft with lights.</p>
+                                </div>
+                                <span class="text-xs text-gray-500">2 days ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-hover ufo-card bg-gray-900 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-xs bg-yellow-600 text-white px-2 py-1 rounded">UNVERIFIED</span>
+                                    <h3 class="font-bold mt-2">San Diego, CA — Tic-Tac Object</h3>
+                                    <p class="text-gray-400 text-sm">Near Naval base. Similar to 2004 Nimitz encounter.</p>
+                                </div>
+                                <span class="text-xs text-gray-500">5 days ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-hover ufo-card bg-gray-900 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-xs bg-red-600 text-white px-2 py-1 rounded">MILITARY</span>
+                                    <h3 class="font-bold mt-2">Area 51 Perimeter — Multiple Orbs</h3>
+                                    <p class="text-gray-400 text-sm">Bright orbs over restricted airspace, vertical departure.</p>
+                                </div>
+                                <span class="text-xs text-gray-500">1 week ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cryptid Column -->
+                <div>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-green-400">
+                            <i class="fas fa-paw mr-2"></i>Cryptid Encounters
+                        </h2>
+                        <a href="cryptids.html" class="text-green-400 hover:text-green-300 text-sm">View All →</a>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="card-hover cryptid-card bg-gray-900 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-xs bg-green-600 text-white px-2 py-1 rounded">BIGFOOT</span>
+                                    <h3 class="font-bold mt-2">Olympic National Forest, WA</h3>
+                                    <p class="text-gray-400 text-sm">Hikers report 8ft bipedal figure crossing trail at dusk.</p>
+                                </div>
+                                <span class="text-xs text-gray-500">3 days ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-hover cryptid-card bg-gray-900 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-xs bg-green-600 text-white px-2 py-1 rounded">NESSIE</span>
+                                    <h3 class="font-bold mt-2">Loch Ness, Scotland</h3>
+                                    <p class="text-gray-400 text-sm">New sonar contact shows large object at 150m depth.</p>
+                                </div>
+                                <span class="text-xs text-gray-500">1 week ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-hover cryptid-card bg-gray-900 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-xs bg-green-600 text-white px-2 py-1 rounded">MOTHMAN</span>
+                                    <h3 class="font-bold mt-2">Point Pleasant, WV</h3>
+                                    <p class="text-gray-400 text-sm">Red-eyed winged figure seen near bridge. Festival incoming.</p>
+                                </div>
+                                <span class="text-xs text-gray-500">2 weeks ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </div>
+    </section>
 
-            <div class="max-w-3xl mx-auto">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-2">Operation Northwoods (1962)</h3>
-                    <p class="text-gray-300">Declassified documents reveal the Pentagon proposed staging terrorist attacks on American soil and blaming Cuba to justify war. JFK rejected the plan.</p>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-2">Watergate Scandal (1972-1974)</h3>
-                    <p class="text-gray-300">Nixon administration's burglary and cover-up led to resignation. Revealed extensive illegal surveillance and "enemies list" targeting political opponents.</p>
-                </div>
-
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-2">Iran-Contra Affair (1985-1987)</h3>
-                    <p class="text-gray-300">Reagan administration secretly sold weapons to Iran (despite embargo) to fund Nicaraguan Contras, violating congressional bans. Several officials convicted.</p>
-                </div>
-
-                <!-- Timeline Item 4 -->
-                <div class="timeline-item">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-2">WMD Lies in Iraq (2003)</h3>
-                    <p class="text-gray-300">Bush administration fabricated evidence of weapons of mass destruction to justify Iraq invasion. No WMDs were ever found.</p>
-                </div>
-
-                <!-- Timeline Item 5 -->
-                <div class="timeline-item">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-2">Snowden Revelations (2013)</h3>
-                    <p class="text-gray-300">Exposed NSA's mass surveillance programs collecting data on millions of innocent Americans without warrants.</p>
-                </div>
-
-                <!-- Timeline Item 6 -->
-                <div class="timeline-item">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-2">COVID Origins Cover-Up (2020-?)</h3>
-                    <p class="text-gray-300">Growing evidence suggests lab leak theory was suppressed while social media censored discussion. NIH funding of gain-of-function research at Wuhan lab confirmed.</p>
+    <!-- Mini Map Preview -->
+    <section class="py-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">Global Sightings Map</h2>
+                <p class="text-gray-400">UFOs, cryptids, and unexplained phenomena — all in one place.</p>
+            </div>
+            
+            <div class="bg-gray-800 rounded-xl p-4 md:p-6">
+                <div id="mini-map" class="mb-4"></div>
+                <div class="flex flex-wrap justify-between items-center gap-4">
+                    <div class="flex gap-4 text-sm">
+                        <span><span class="inline-block w-3 h-3 rounded-full bg-blue-500 mr-1"></span> UFO/UAP</span>
+                        <span><span class="inline-block w-3 h-3 rounded-full bg-green-500 mr-1"></span> Cryptid</span>
+                        <span><span class="inline-block w-3 h-3 rounded-full bg-red-500 mr-1"></span> Military Area</span>
+                    </div>
+                    <a href="sightings-map.html" class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-lg font-medium">
+                        Explore Full Map <i class="fas fa-expand ml-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Corrupt Leaders Section -->
-    <section id="leaders" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-500">CORRUPT LEADERS EXPOSED</h2>
-                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
-                <p class="text-xl max-w-3xl mx-auto">The dark truths about politicians who betrayed public trust for power and profit.</p>
+    <!-- Government Cover-Ups Section -->
+    <section class="py-16 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-yellow-500">PROVEN COVER-UPS</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">These aren't theories — they're documented cases of government deception.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Leader Card 1 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/44/JFK_photo_portrait%2C_White_House%2C_1961.jpg');"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-yellow-500">John F. Kennedy</h3>
-                        <p class="text-gray-400 text-sm mb-4">35th U.S. President (1961-1963)</p>
-                        <p class="text-gray-300 mb-4">While often romanticized, JFK approved CIA assassination plots against foreign leaders (Castro, Lumumba) and escalated Vietnam despite private doubts.</p>
-                        <div class="flex items-center">
-                            <span class="bg-red-900 text-red-300 text-xs px-2 py-1 rounded">Assassination Plots</span>
-                            <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded ml-2">Vietnam Escalation</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover bg-gray-900 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-600 p-3 rounded-full mr-4">
+                            <i class="fas fa-user-secret text-white"></i>
                         </div>
+                        <h3 class="font-bold text-lg">JFK Assassination</h3>
                     </div>
+                    <p class="text-gray-400 text-sm mb-4">The Warren Commission's "lone gunman" theory debunked by ballistics, witnesses, and the magic bullet.</p>
+                    <a href="topics/jfk.html" class="text-yellow-500 text-sm hover:text-yellow-400">Deep Dive →</a>
                 </div>
 
-                <!-- Leader Card 2 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Richard_Nixon_presidential_portrait_%281%29.jpg');"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-yellow-500">Richard Nixon</h3>
-                        <p class="text-gray-400 text-sm mb-4">37th U.S. President (1969-1974)</p>
-                        <p class="text-gray-300 mb-4">Watergate was just the tip of the iceberg - Nixon's secret bombing of Cambodia, COINTELPRO against activists, and enemies list revealed deep corruption.</p>
-                        <div class="flex items-center">
-                            <span class="bg-red-900 text-red-300 text-xs px-2 py-1 rounded">Watergate</span>
-                            <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded ml-2">COINTELPRO</span>
+                <div class="card-hover bg-gray-900 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-600 p-3 rounded-full mr-4">
+                            <i class="fas fa-brain text-white"></i>
                         </div>
+                        <h3 class="font-bold text-lg">MK-Ultra</h3>
                     </div>
+                    <p class="text-gray-400 text-sm mb-4">CIA mind control experiments on unwitting citizens. LSD, torture, destroyed documents.</p>
+                    <a href="topics/mkultra.html" class="text-yellow-500 text-sm hover:text-yellow-400">Deep Dive →</a>
                 </div>
 
-                <!-- Leader Card 3 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Ronald_Reagan_presidential_portrait_%28cropped%29.jpg');"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-yellow-500">Ronald Reagan</h3>
-                        <p class="text-gray-400 text-sm mb-4">40th U.S. President (1981-1989)</p>
-                        <p class="text-gray-300 mb-4">Iran-Contra scandal involved illegal arms deals and funding of death squads. Ignored AIDS crisis while cutting health funding. Secretly negotiated with terrorists.</p>
-                        <div class="flex items-center">
-                            <span class="bg-red-900 text-red-300 text-xs px-2 py-1 rounded">Iran-Contra</span>
-                            <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded ml-2">AIDS Neglect</span>
+                <div class="card-hover bg-gray-900 rounded-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-600 p-3 rounded-full mr-4">
+                            <i class="fas fa-satellite text-white"></i>
                         </div>
+                        <h3 class="font-bold text-lg">Mass Surveillance</h3>
                     </div>
+                    <p class="text-gray-400 text-sm mb-4">Snowden revealed NSA collecting data on millions. PRISM, Five Eyes, total information awareness.</p>
+                    <a href="topics/surveillance.html" class="text-yellow-500 text-sm hover:text-yellow-400">Deep Dive →</a>
                 </div>
+            </div>
 
-                <!-- Leader Card 4 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Bill_Clinton.jpg');"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-yellow-500">Bill Clinton</h3>
-                        <p class="text-gray-400 text-sm mb-4">42nd U.S. President (1993-2001)</p>
-                        <p class="text-gray-300 mb-4">Deregulated Wall Street leading to 2008 crash. Expanded mass incarceration. Lied under oath about Lewinsky affair. Multiple credible rape allegations.</p>
-                        <div class="flex items-center">
-                            <span class="bg-red-900 text-red-300 text-xs px-2 py-1 rounded">Wall St Deregulation</span>
-                            <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded ml-2">Sexual Misconduct</span>
-                        </div>
+            <div class="text-center mt-8">
+                <a href="start-here.html" class="text-yellow-500 hover:text-yellow-400 font-medium">
+                    See All Rabbit Holes <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Teaser -->
+    <section class="py-16 bg-gradient-to-r from-green-900/50 to-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div>
+                    <span class="text-green-400 text-sm font-medium"><i class="fas fa-tshirt mr-2"></i>GEAR UP</span>
+                    <h2 class="text-3xl font-bold mt-2 mb-4">Cryptid Hunter Merch</h2>
+                    <p class="text-gray-400 mb-4">Show your allegiance. Bigfoot believer? Nessie hunter? Mothman witness? We've got you.</p>
+                    <a href="shop.html" class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium">
+                        Browse Shop <i class="fas fa-shopping-bag ml-2"></i>
+                    </a>
+                </div>
+                <div class="flex gap-4">
+                    <div class="bg-gray-800 rounded-lg p-4 text-center w-32">
+                        <i class="fas fa-paw text-4xl text-green-500 mb-2"></i>
+                        <p class="text-sm">Bigfoot Gear</p>
                     </div>
-                </div>
-
-                <!-- Leader Card 5 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d4/George-W-Bush.jpeg');"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-yellow-500">George W. Bush</h3>
-                        <p class="text-gray-400 text-sm mb-4">43rd U.S. President (2001-2009)</p>
-                        <p class="text-gray-300 mb-4">Fabricated WMD claims to invade Iraq. Allowed torture programs. Ignored pre-9/11 warnings. Katrina response failure. Oversaw 2008 financial collapse.</p>
-                        <div class="flex items-center">
-                            <span class="bg-red-900 text-red-300 text-xs px-2 py-1 rounded">Iraq War Lies</span>
-                            <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded ml-2">Torture Programs</span>
-                        </div>
+                    <div class="bg-gray-800 rounded-lg p-4 text-center w-32">
+                        <i class="fas fa-water text-4xl text-blue-500 mb-2"></i>
+                        <p class="text-sm">Nessie Gear</p>
                     </div>
-                </div>
-
-                <!-- Leader Card 6 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transform transition hover:scale-105">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg');"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-yellow-500">Donald Trump</h3>
-                        <p class="text-gray-400 text-sm mb-4">45th U.S. President (2017-2021)</p>
-                        <p class="text-gray-300 mb-4">Multiple impeachments. Incited Jan 6 insurrection. Tax fraud. Epstein connections. COVID mismanagement. Record corruption with foreign governments.</p>
-                        <div class="flex items-center">
-                            <span class="bg-red-900 text-red-300 text-xs px-2 py-1 rounded">Insurrection</span>
-                            <span class="bg-blue-900 text-blue-300 text-xs px-2 py-1 rounded ml-2">Epstein Ties</span>
-                        </div>
+                    <div class="bg-gray-800 rounded-lg p-4 text-center w-32">
+                        <i class="fas fa-feather-alt text-4xl text-red-500 mb-2"></i>
+                        <p class="text-sm">Mothman Gear</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Whistleblowers Section -->
-    <section id="whistleblowers" class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-yellow-500">WHISTLEBLOWERS & TRUTH-TELLERS</h2>
-                <div class="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
-                <p class="text-xl max-w-3xl mx-auto">The brave individuals who risked everything to expose government corruption.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Whistleblower 1 -->
-                <div class="bg-gray-800 rounded-lg p-6 text-center">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-cover bg-center border-2 border-yellow-500" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/60/Daniel_Ellsberg_%282017%29.jpg');"></div>
-                    <h3 class="text-xl font-bold mb-2 text-yellow-500">Daniel Ellsberg</h3>
-                    <p class="text-gray-400 text-sm mb-4">Pentagon Papers (1971)</p>
-                    <p class="text-gray-300 text-sm">Leaked documents proving government knew Vietnam War was unwinnable but kept sending troops.</p>
-                </div>
-
-                <!-- Whistleblower 2 -->
-                <div class="bg-gray-800 rounded-lg p-6 text-center">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-cover bg-center border-2 border-yellow-500" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/68/Mark_Felt_-_FBI.jpg');"></div>
-                    <h3 class="text-xl font-bold mb-2 text-yellow-500">Mark Felt</h3>
-                    <p class="text-gray-400 text-sm mb-4">"Deep Throat" (1972-1974)</p>
-                    <p class="text-gray-300 text-sm">FBI official who guided Woodward & Bernstein to expose Watergate crimes.</p>
-                </div>
-
-                <!-- Whistleblower 3 -->
-                <div class="bg-gray-800 rounded-lg p-6 text-center">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-cover bg-center border-2 border-yellow-500" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0e/Chelsea_Manning_2010.jpg');"></div>
-                    <h3 class="text-xl font-bold mb-2 text-yellow-500">Chelsea Manning</h3>
-                    <p class="text-gray-400 text-sm mb-4">Iraq War Logs (2010)</p>
-                    <p class="text-gray-300 text-sm">Exposed war crimes including Collateral Murder video showing US killing journalists.</p>
-                </div>
-
-                <!-- Whistleblower 4 -->
-                <div class="bg-gray-800 rounded-lg p-6 text-center">
-                    <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-cover bg-center border-2 border-yellow-500" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/60/Edward_Snowden-2.jpg');"></div>
-                    <h3 class="text-xl font-bold mb-2 text-yellow-500">Edward Snowden</h3>
-                    <p class="text-gray-400 text-sm mb-4">NSA Surveillance (2013)</p>
-                    <p class="text-gray-300 text-sm">Revealed global mass surveillance programs violating constitutional rights.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-20 bg-yellow-600 bg-opacity-90">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-black">STAY INFORMED. QUESTION AUTHORITY.</h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto text-gray-900">The first step to change is awareness. Join our newsletter for uncensored truth.</p>
-            <div class="max-w-md mx-auto flex">
-                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-900">
-                <button class="bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-r-lg font-semibold">
-                    <i class="fas fa-paper-plane mr-2"></i> Subscribe
+    <!-- Newsletter -->
+    <section id="newsletter" class="py-16 bg-yellow-600">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">DON'T MISS A SIGHTING</h2>
+            <p class="text-gray-800 mb-6">Weekly sighting reports, declassified document drops, and investigations they don't want you to see.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900">
+                <button class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold">
+                    Subscribe
                 </button>
             </div>
-            <p class="text-sm mt-4 text-gray-900">We respect your privacy. No tracking. No spam.</p>
+            <p class="text-xs text-gray-700 mt-4">No spam. No tracking. We respect your privacy.</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-black py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <h3 class="text-yellow-500 font-bold text-xl mb-4"><i class="fas fa-eye mr-2"></i>TRUTHSEEKER</h3>
-                    <p class="text-gray-400">Dedicated to exposing government corruption and uncovering hidden truths.</p>
-                    <div class="flex mt-4 space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-telegram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-github"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-reddit"></i></a>
+                    <h4 class="font-bold text-yellow-500 mb-4">Investigate</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="ufo-sightings.html" class="hover:text-white">UFO Sightings</a></li>
+                        <li><a href="cryptids.html" class="hover:text-white">Cryptid Tracker</a></li>
+                        <li><a href="start-here.html" class="hover:text-white">Rabbit Holes</a></li>
+                        <li><a href="articles/index.html" class="hover:text-white">Investigations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-yellow-500 mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="resources.html" class="hover:text-white">Document Archives</a></li>
+                        <li><a href="resources.html#privacy" class="hover:text-white">Privacy Tools</a></li>
+                        <li><a href="resources.html#books" class="hover:text-white">Books</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-yellow-500 mb-4">Community</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">Submit Sighting</a></li>
+                        <li><a href="shop.html" class="hover:text-white">Merch Shop</a></li>
+                        <li><a href="#newsletter" class="hover:text-white">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-yellow-500 mb-4">Connect</h4>
+                    <div class="flex gap-4 text-xl">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-reddit"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Resources</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-yellow-500">Declassified Documents</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-yellow-500">Whistleblower Protection</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-yellow-500">FOIA Requests Guide</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-yellow-500">Secure Communication</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-yellow-500">Disclaimer</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-yellow-500">Privacy Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-yellow-500">Terms of Service</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-yellow-500">GDPR Compliance</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Contact</h4>
-                    <ul class="space-y-2">
-                        <li class="text-gray-400"><i class="fas fa-envelope mr-2"></i> contact@truthseeker.net</li>
-                        <li class="text-gray-400"><i class="fas fa-lock mr-2"></i> PGP Key: 0x1A2B3C4D</li>
-                        <li class="text-gray-400"><i class="fas fa-shield-alt mr-2"></i> SecureDrop Available</li>
-                    </ul>
-                </div>
             </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-500 text-sm">© 2023 TruthSeeker. All information is based on publicly available evidence.</p>
-                <p class="text-gray-500 text-sm mt-4 md:mt-0">"The truth will set you free, but first it will piss you off." - Gloria Steinem</p>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2026 TruthSeekerHQ. Question Everything.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-yellow-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
     <script>
-        // Back to Top Button
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+        // Initialize mini map
+        const map = L.map('mini-map').setView([39.8283, -98.5795], 3);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            maxZoom: 19
+        }).addTo(map);
 
-        // Mobile menu toggle would go here
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Sample markers
+        const markers = [
+            { lat: 33.4484, lng: -112.0740, type: 'ufo', title: 'Phoenix Triangle' },
+            { lat: 37.2350, lng: -115.8111, type: 'military', title: 'Area 51' },
+            { lat: 32.7157, lng: -117.1611, type: 'ufo', title: 'San Diego Tic-Tac' },
+            { lat: 47.8021, lng: -123.8345, type: 'cryptid', title: 'Bigfoot Sighting' },
+            { lat: 57.3229, lng: -4.4543, type: 'cryptid', title: 'Loch Ness' },
+            { lat: 38.8448, lng: -82.1376, type: 'cryptid', title: 'Mothman' },
+        ];
+
+        markers.forEach(m => {
+            const color = m.type === 'ufo' ? '#3b82f6' : m.type === 'cryptid' ? '#22c55e' : '#ef4444';
+            const icon = L.divIcon({
+                html: `<div style="background:${color};width:10px;height:10px;border-radius:50%;border:2px solid white;box-shadow:0 0 8px ${color};"></div>`,
+                className: '',
+                iconSize: [10, 10]
             });
+            L.marker([m.lat, m.lng], { icon }).addTo(map).bindPopup(`<b>${m.title}</b>`);
         });
     </script>
 </body>
