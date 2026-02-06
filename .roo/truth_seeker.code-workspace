@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../Claude/PetPalHQ"
+		},
+		{
+			"path": "../../Claude/PetPalHQ-WordPress"
+		},
+		{
+			"path": "../../Claude/PetPalHQ_Project"
+		},
+		{
+			"path": "../../Claude/petpalhq_automation"
+		}
+	],
+	"settings": {}
+}
