@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
   try {
     // Add contact to list
-    const response = await fetch('https://api.brevo.com/v3/contacts', {
+    const contactResponse = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
         'api-key': apiKey,
@@ -35,41 +35,36 @@ export default async function handler(req, res) {
       })
     });
 
-    const isNew = response.ok || response.status === 201 || response.status === 204;
+    const isNew = contactResponse.ok || contactResponse.status === 201 || contactResponse.status === 204;
     let isDuplicate = false;
     
     if (!isNew) {
-      const data = await response.json();
+      const data = await contactResponse.json();
       isDuplicate = data.code === 'duplicate_parameter';
       if (!isDuplicate) {
         return res.status(400).json({ error: data.message || 'Subscription failed' });
       }
     }
 
-    // Send welcome email only to new subscribers
-    if (isNew) {
-      try {
-        await fetch('https://api.brevo.com/v3/smtp/email', {
-          method: 'POST',
-          headers: {
-            'api-key': apiKey,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            templateId: 1, // TruthSeekerHQ Welcome template
-            to: [{ email: email }],
-            params: {}
-          })
-        });
-      } catch (emailErr) {
-        // Don't fail subscription if welcome email fails
-        console.error('Welcome email failed:', emailErr);
-      }
-    }
+    // Send welcome email to ALL subscribers (new or returning)
+    const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'api-key': apiKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        templateId: 1,
+        to: [{ email: email }]
+      })
+    });
+
+    const emailSent = emailResponse.ok;
 
     return res.status(200).json({ 
       success: true, 
-      message: isDuplicate ? 'Already subscribed' : 'Subscribed!' 
+      message: isDuplicate ? 'Already subscribed' : 'Subscribed!',
+      emailSent: emailSent
     });
   } catch (err) {
     console.error('Brevo API error:', err);
