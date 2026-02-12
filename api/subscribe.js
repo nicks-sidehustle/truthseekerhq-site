@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         email: email,
-        listIds: [4], // TruthSeekerHQ Newsletter list
+        listIds: [5], // TruthSeekerHQ Newsletter list
         updateEnabled: true
       })
     });
