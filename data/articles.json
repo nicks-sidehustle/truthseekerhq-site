@@ -1,0 +1,112 @@
+{
+  "articles": [
+    {
+      "slug": "secret-space-program",
+      "title": "The Secret Space Program: Soldiers on the Moon They Won't Admit Exist",
+      "category": "investigation",
+      "tags": ["featured", "investigation"],
+      "excerpt": "U.S. Army Secretary Dan Driscoll mentioned \"an astronaut on the Moon who's a soldier.\" A slip of the tongue—or a glimpse behind the curtain?",
+      "publishDate": "February 12, 2026",
+      "readTime": "14 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800",
+      "featured": true,
+      "url": "articles/secret-space-program.html"
+    },
+    {
+      "slug": "ai-first-contact",
+      "title": "What If AI IS First Contact?",
+      "category": "theory",
+      "tags": ["breaking-theory"],
+      "excerpt": "Trump just greenlit UFO disclosure. But what if first contact already happened — and you've been talking to it every day?",
+      "publishDate": "February 6, 2026",
+      "readTime": "12 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+      "featured": false,
+      "url": "articles/ai-first-contact.html"
+    },
+    {
+      "slug": "antarctica-secrets",
+      "title": "Antarctica's Forbidden Zones: What They're Really Hiding",
+      "category": "hidden-history",
+      "tags": ["hidden-history", "new"],
+      "excerpt": "The Antarctic Treaty, no-fly zones, and Operation Highjump. What's in Antarctica that requires unprecedented global cooperation to keep hidden?",
+      "publishDate": "February 9, 2026",
+      "readTime": "14 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=800",
+      "featured": false,
+      "url": "articles/antarctica-secrets.html"
+    },
+    {
+      "slug": "digital-panopticon",
+      "title": "The Digital Panopticon: Your Smart Devices Know More Than the Stasi",
+      "category": "surveillance",
+      "tags": ["surveillance", "new"],
+      "excerpt": "The Stasi had 1 informant per 63 citizens. Your smart home has 22 devices watching you. Welcome to the surveillance state you installed yourself.",
+      "publishDate": "February 9, 2026",
+      "readTime": "15 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+      "featured": false,
+      "url": "articles/digital-panopticon.html"
+    },
+    {
+      "slug": "great-reset-decoded",
+      "title": "The Great Reset Decoded: Reading Between the Lines",
+      "category": "world-order",
+      "tags": ["world-order"],
+      "excerpt": "Klaus Schwab published the playbook. \"You'll own nothing\" has a source. We read the WEF documents so you don't have to.",
+      "publishDate": "February 9, 2026",
+      "readTime": "13 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800",
+      "featured": false,
+      "url": "articles/great-reset-decoded.html"
+    },
+    {
+      "slug": "philadelphia-experiment",
+      "title": "The Philadelphia Experiment: When Reality Bends",
+      "category": "classified",
+      "tags": ["classified", "new"],
+      "excerpt": "USS Eldridge vanishes, reappears 200 miles away, then returns. Crew fused with bulkheads. The Navy still denies it happened.",
+      "publishDate": "February 15, 2026",
+      "readTime": "12 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800",
+      "featured": false,
+      "url": "articles/philadelphia-experiment.html"
+    },
+    {
+      "slug": "black-knight-satellite",
+      "title": "The Black Knight Satellite: 13,000 Years in Orbit",
+      "category": "space-mystery",
+      "tags": ["space-mystery"],
+      "excerpt": "First detected in 1899, photographed by NASA in 1998. A 13,000-year-old satellite that shouldn't exist. Tesla heard its signals. We're still listening.",
+      "publishDate": "February 8, 2026",
+      "readTime": "11 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+      "featured": false,
+      "url": "articles/black-knight-satellite.html"
+    },
+    {
+      "slug": "operation-paperclip",
+      "title": "Operation Paperclip: Nazi Scientists Built NASA",
+      "category": "hidden-history",
+      "tags": ["hidden-history"],
+      "excerpt": "1,600 Nazi scientists smuggled into America. Von Braun built rockets using slave labor. Then he built the Saturn V. Dark origins of the space program.",
+      "publishDate": "February 7, 2026",
+      "readTime": "16 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800",
+      "featured": false,
+      "url": "articles/operation-paperclip.html"
+    },
+    {
+      "slug": "promethean-report",
+      "title": "The Prometheus Report: UFOs and Nuclear Security",
+      "category": "ufo-military",
+      "tags": ["ufo-military"],
+      "excerpt": "UFOs systematically disable nuclear weapons. Malmstrom, F.E. Warren, Minot Air Force Base. Why are they interested in our nukes?",
+      "publishDate": "February 5, 2026",
+      "readTime": "13 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=800",
+      "featured": false,
+      "url": "articles/promethean-report.html"
+    }
+  ]
+}

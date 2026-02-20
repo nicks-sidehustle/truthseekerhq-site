@@ -17,6 +17,7 @@
     <title>Articles | TruthSeekerHQ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../js/articles.js"></script>
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans">
     <nav class="bg-black bg-opacity-90 fixed w-full z-50 shadow-lg">
@@ -48,136 +49,12 @@
 
     <section class="py-12 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Featured Article -->
-                <a href="secret-space-program.html" class="col-span-full bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-yellow-500 transition">
-                    <div class="md:flex">
-                        <div class="md:w-1/2 h-64 md:h-auto bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800');"></div>
-                        <div class="p-8 md:w-1/2">
-                            <div class="flex gap-2 mb-3">
-                                <span class="bg-red-600 text-white text-xs px-2 py-1 rounded">FEATURED</span>
-                                <span class="bg-purple-600 text-white text-xs px-2 py-1 rounded">INVESTIGATION</span>
-                            </div>
-                            <h2 class="text-2xl font-bold mb-3">The Secret Space Program: Soldiers on the Moon They Won't Admit Exist</h2>
-                            <p class="text-gray-400 mb-4">U.S. Army Secretary Dan Driscoll mentioned "an astronaut on the Moon who's a soldier." A slip of the tongue—or a glimpse behind the curtain?</p>
-                            <div class="text-sm text-gray-500">
-                                <span>February 12, 2026</span> • <span>14 min read</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- AI First Contact Article -->
-                <a href="ai-first-contact.html" class="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-yellow-500 transition">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800');"></div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded">BREAKING THEORY</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">What If AI IS First Contact?</h3>
-                        <p class="text-gray-400 text-sm mb-4">Trump just greenlit UFO disclosure. But what if first contact already happened — and you've been talking to it every day?</p>
-                        <div class="text-sm text-gray-500">
-                            <span>February 6, 2026</span> • <span>12 min read</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Antarctica Article -->
-                <a href="antarctica-secrets.html" class="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-yellow-500 transition">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=800');"></div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded">HIDDEN HISTORY</span>
-                            <span class="bg-yellow-600 text-white text-xs px-2 py-1 rounded">NEW</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Antarctica's Forbidden Zones: What They're Really Hiding</h3>
-                        <p class="text-gray-400 text-sm mb-4">The Antarctic Treaty, no-fly zones, and Operation Highjump. What's in Antarctica that requires unprecedented global cooperation to keep hidden?</p>
-                        <div class="text-sm text-gray-500">
-                            <span>February 9, 2026</span> • <span>14 min read</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Digital Panopticon Article -->
-                <a href="digital-panopticon.html" class="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-yellow-500 transition">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800');"></div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="bg-purple-600 text-white text-xs px-2 py-1 rounded">SURVEILLANCE</span>
-                            <span class="bg-yellow-600 text-white text-xs px-2 py-1 rounded">NEW</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">The Digital Panopticon: Your Smart Devices Know More Than the Stasi</h3>
-                        <p class="text-gray-400 text-sm mb-4">The Stasi had 1 informant per 63 citizens. Your smart home has 22 devices watching you. Welcome to the surveillance state you installed yourself.</p>
-                        <div class="text-sm text-gray-500">
-                            <span>February 9, 2026</span> • <span>15 min read</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Great Reset Article -->
-                <a href="great-reset-decoded.html" class="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-yellow-500 transition">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800');"></div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="bg-green-600 text-white text-xs px-2 py-1 rounded">WORLD ORDER</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">The Great Reset Decoded: Reading Between the Lines</h3>
-                        <p class="text-gray-400 text-sm mb-4">Klaus Schwab published the playbook. "You'll own nothing" has a source. We read the WEF documents so you don't have to.</p>
-                        <div class="text-sm text-gray-500">
-                            <span>February 9, 2026</span> • <span>13 min read</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Philadelphia Experiment Article -->
-                <a href="philadelphia-experiment.html" class="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-yellow-500 transition">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800');"></div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="bg-purple-600 text-white text-xs px-2 py-1 rounded">CLASSIFIED</span>
-                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded">NEW</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">The Philadelphia Experiment: When Reality Bends</h3>
-                        <p class="text-gray-400 text-sm mb-4">USS Eldridge vanishes, reappears 200 miles away, then returns. Crew fused with bulkheads. The Navy still denies it happened.</p>
-                        <div class="text-sm text-gray-500">
-                            <span>February 15, 2026</span> • <span>12 min read</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Black Knight Satellite Article -->
-                <a href="black-knight-satellite.html" class="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-yellow-500 transition">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800');"></div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="bg-green-600 text-white text-xs px-2 py-1 rounded">ANCIENT MYSTERY</span>
-                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded">NEW</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">The Black Knight Satellite: 13,000-Year-Old Watcher</h3>
-                        <p class="text-gray-400 text-sm mb-4">Radio signals from space since 1899. NASA photographs. Ancient texts describe "the watcher." It predates human civilization.</p>
-                        <div class="text-sm text-gray-500">
-                            <span>February 15, 2026</span> • <span>11 min read</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Operation Paperclip Article -->
-                <a href="operation-paperclip.html" class="bg-gray-800 rounded-lg overflow-hidden hover:ring-2 hover:ring-yellow-500 transition">
-                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1589254065878-42c9da997008?w=800');"></div>
-                    <div class="p-6">
-                        <div class="flex gap-2 mb-3">
-                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded">CLASSIFIED HISTORY</span>
-                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded">NEW</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Operation Paperclip: Nazi Science in America</h3>
-                        <p class="text-gray-400 text-sm mb-4">1,600 Nazi scientists relocated to America. Von Braun built NASA. Die Glocke research continues in classified projects.</p>
-                        <div class="text-sm text-gray-500">
-                            <span>February 15, 2026</span> • <span>15 min read</span>
-                        </div>
-                    </div>
-                </a>
-
+            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Articles will be loaded dynamically -->
+                <div class="col-span-full flex items-center justify-center py-16">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500"></div>
+                    <span class="ml-3 text-gray-400 text-lg">Loading investigations...</span>
+                </div>
             </div>
         </div>
     </section>
