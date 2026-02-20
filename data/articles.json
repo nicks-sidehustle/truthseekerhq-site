@@ -1,15 +1,51 @@
 {
   "articles": [
     {
+      "slug": "trump-orders-ufo-disclosure",
+      "title": "BREAKING: Trump Orders Pentagon to Release UFO Files — What We Know",
+      "category": "breaking-news",
+      "tags": ["breaking", "featured", "disclosure"],
+      "excerpt": "President Trump has directed Pentagon Chief Pete Hegseth and other agencies to begin identifying and releasing government files on aliens, extraterrestrial life, UAPs, and UFOs.",
+      "publishDate": "February 20, 2026",
+      "readTime": "8 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=800",
+      "featured": true,
+      "url": "articles/trump-orders-ufo-disclosure.html"
+    },
+    {
+      "slug": "obama-trump-ufo-chain-reaction",
+      "title": "The Obama-Trump UFO Disclosure Chain: How a Podcast Interview Changed Everything",
+      "category": "political-ufo",
+      "tags": ["featured", "political", "disclosure"],
+      "excerpt": "How Obama's casual 'they're real' comment on a podcast snowballed into a presidential directive that could crack open 75 years of UFO secrecy.",
+      "publishDate": "February 20, 2026",
+      "readTime": "11 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800",
+      "featured": true,
+      "url": "articles/obama-trump-ufo-chain-reaction.html"
+    },
+    {
+      "slug": "pentagon-ufo-files-revealed",
+      "title": "What's Actually in the Pentagon's UFO Files? A History of Government Secrecy",
+      "category": "classified",
+      "tags": ["featured", "classified", "analysis"],
+      "excerpt": "From Navy Tic-Tac videos to AATIP's secret research: What 75 years of classified UFO files actually contain — and what Trump's disclosure might finally reveal.",
+      "publishDate": "February 20, 2026",
+      "readTime": "13 min read",
+      "imageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800",
+      "featured": true,
+      "url": "articles/pentagon-ufo-files-revealed.html"
+    },
+    {
       "slug": "secret-space-program",
       "title": "The Secret Space Program: Soldiers on the Moon They Won't Admit Exist",
       "category": "investigation",
-      "tags": ["featured", "investigation"],
+      "tags": ["investigation"],
       "excerpt": "U.S. Army Secretary Dan Driscoll mentioned \"an astronaut on the Moon who's a soldier.\" A slip of the tongue—or a glimpse behind the curtain?",
       "publishDate": "February 12, 2026",
       "readTime": "14 min read",
       "imageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800",
-      "featured": true,
+      "featured": false,
       "url": "articles/secret-space-program.html"
     },
     {
